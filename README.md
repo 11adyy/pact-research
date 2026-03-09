@@ -31,3 +31,16 @@ The accompanying manuscript, *From Agent Instructions to Executable Procedures: 
 | Text processing | 2.93 s | 7.86 s |
 
 The structured configuration exposes intermediate traces and independently reusable operations. Reported text-output Jaccard variation rises from approximately 0.12 to 0.17. These observations describe the evaluated configurations; they do not establish better semantic accuracy, a stability guarantee or isolated scheduling overhead. The manuscript reports existing measurements rather than a new benchmark run.
+
+## Run the local copy
+
+Keep `pact-runtime/` and the supplied `pact-registry/` next to each other. Python 3.11 or later is required.
+
+```bash
+cd pact-runtime
+python -m pip install -e .
+python skills.py doctor
+python skills.py run text.language-summary --input '{"text":"A procedure makes intermediate work inspectable."}'
+```
+
+Use `PACT_RUNTIME_REGISTRY_ROOT` to select another local catalog. Configure `PACT_RUNTIME_REGISTRY_URL` before requesting a remote clone. The ZIP provides the local catalog without its original Git history. Remote examples using `example.invalid` are placeholders to configure when publishing.
