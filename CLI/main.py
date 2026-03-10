@@ -211,7 +211,9 @@ def _cmd_trace(
         print(f"[{event.type}] {event.message}")
         if event.step_id:
             print(f"  step: {event.step_id}")
+                                                                    
         if event.data:
+                                        
             for k, v in event.data.items():
                 print(f"  {k}: {v}")
         print()

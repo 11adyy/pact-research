@@ -3,6 +3,8 @@ Text baseline service module.
 Provides baseline implementations for text-related capabilities.
 """
 
+import re
+
 def classify_text(text, categories):
     """
     Classify text into one of the given categories.
@@ -47,16 +49,47 @@ def extract_entities(text):
 
 def extract_text(document):
     """
-    Extract text from a document.
+    Extract text from a document (HTML content).
     
     Args:
-        document (bytes): The document data.
+        document (str): The document/HTML data.
     
     Returns:
         dict: {"text": str}
     """
-                                          
-    return {"text": "[Extracted text]"}
+                                     
+    if isinstance(document, bytes):
+        text = document.decode('utf-8', errors='ignore')
+    else:
+        text = document
+    
+                                                                                         
+    text = re.sub(r'<script[^>]*>.*?</script>', ' ', text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r'<style[^>]*>.*?</style>', ' ', text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r'<noscript[^>]*>.*?</noscript>', ' ', text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r'<!--.*?-->', ' ', text, flags=re.DOTALL)                        
+    
+                                    
+    text = re.sub(r'<head[^>]*>.*?</head>', ' ', text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r'<nav[^>]*>.*?</nav>', ' ', text, flags=re.DOTALL | re.IGNORECASE)
+    text = re.sub(r'<footer[^>]*>.*?</footer>', ' ', text, flags=re.DOTALL | re.IGNORECASE)
+    
+                      
+    text = re.sub(r'<[^>]+>', ' ', text)
+    
+                          
+    text = text.replace('&nbsp;', ' ')
+    text = text.replace('&amp;', '&')
+    text = text.replace('&lt;', '<')
+    text = text.replace('&gt;', '>')
+    text = text.replace('&quot;', '"')
+    text = text.replace('&#39;', "'")
+    
+                                  
+    text = re.sub(r'\s+', ' ', text)
+    text = text.strip()
+    
+    return {"text": text}
 
 def extract_keywords(text):
     """
@@ -68,9 +101,26 @@ def extract_keywords(text):
     Returns:
         dict: {"keywords": list}
     """
-                                                               
-    words = text.split()[:5]
-    return {"keywords": words}
+                                                           
+    stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'can', 'of', 'with', 'by', 'from', 'as', 'it', 'that', 'which', 'who', 'what', 'where', 'when', 'why', 'how'}
+    
+                                    
+    words = text.lower().split()
+    
+                                           
+    keywords = [w for w in words if w not in stop_words and len(w) > 3]
+    
+                                   
+    unique_keywords = []
+    seen = set()
+    for kw in keywords:
+        if kw not in seen:
+            unique_keywords.append(kw)
+            seen.add(kw)
+            if len(unique_keywords) >= 10:
+                break
+    
+    return {"keywords": unique_keywords}
 
 def detect_language(text):
     """
@@ -82,7 +132,7 @@ def detect_language(text):
     Returns:
         dict: {"language": str}
     """
-                                             
+                                                                                  
     return {"language": "en"}
 
 def summarize_text(text, max_length=None):
@@ -96,11 +146,35 @@ def summarize_text(text, max_length=None):
     Returns:
         dict: {"summary": str}
     """
-                                                                                    
+                                                  
+    if not text or len(text.split()) < 3:
+        return {"summary": text}
+    
+                          
+    sentences = re.split(r'[.!?]+', text)
+    sentences = [s.strip() for s in sentences if s.strip()]
+    
+    if not sentences:
+        return {"summary": text}
+    
+                                          
     if max_length is None:
-                                                         
         max_length = 500
-    summary = text[:max_length] if len(text) > max_length else text
+    
+                                                                 
+    summary = ""
+    for sentence in sentences:
+        if len(summary) + len(sentence) + 2 < max_length:
+            if summary:
+                summary += ". "
+            summary += sentence
+        else:
+            break
+    
+                          
+    if summary and not summary.endswith('.'):
+        summary += "."
+    
     return {"summary": summary}
 
 def template_text(template, variables):
@@ -114,8 +188,14 @@ def template_text(template, variables):
     Returns:
         dict: {"templated_text": str}
     """
-                                                       
-    templated = template.format(**variables)
+                                                            
+    try:
+                                                         
+        format_template = re.sub(r'\{\{(\w+)\}\}', r'{\1}', template)
+        templated = format_template.format(**variables)
+    except KeyError:
+        templated = template
+    
     return {"templated_text": templated}
 
 def translate_text(text, target_language):
@@ -129,5 +209,5 @@ def translate_text(text, target_language):
     Returns:
         dict: {"translated_text": str}
     """
-                                                   
+                                                                                             
     return {"translated_text": text}
