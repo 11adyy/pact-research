@@ -44,3 +44,7 @@ python skills.py run text.language-summary --input '{"text":"A procedure makes i
 ```
 
 Use `PACT_RUNTIME_REGISTRY_ROOT` to select another local catalog. Configure `PACT_RUNTIME_REGISTRY_URL` before requesting a remote clone. The ZIP provides the local catalog without its original Git history. Remote examples using `example.invalid` are placeholders to configure when publishing.
+
+## Reference material
+
+- [docs/OBSERVABILITY.md](docs/OBSERVABILITY.md)
