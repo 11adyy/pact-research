@@ -74,4 +74,4 @@ def classify_image(image_data):
         dict: {"class": str, "confidence": float}
     """
                                           
-    return {"class": "unknown", "confidence": 0.0}
+    return {"label": "unknown", "confidence": 0.0}

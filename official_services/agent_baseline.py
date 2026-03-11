@@ -25,22 +25,22 @@ def generate_plan(goal):
         goal (str): The goal description.
     
     Returns:
-        dict: {"plan": str}
+        dict: {"plan": object}  — matches schema type
     """
-                                          
-    return {"plan": f"Plan to achieve: {goal}"}
+                                                     
+    return {"plan": {"objective": goal, "steps": [f"Step 1: Analyse requirements for: {goal}", "Step 2: Execute", "Step 3: Verify"]}}
 
 def route_agent(query, agents):
     """
     Route a query to the most appropriate agent.
-    
+
     Args:
         query (str): The query text.
         agents (list): List of available agents.
-    
+
     Returns:
-        dict: {"selected_agent": str}
+        dict: {"route": str}
     """
                                                  
     selected = agents[0] if agents else "default"
-    return {"selected_agent": selected}
+    return {"route": selected}
