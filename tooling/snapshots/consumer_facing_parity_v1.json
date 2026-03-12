@@ -1,13 +1,9 @@
 {
   "health": {
     "http": {
-      "registry_root": "C:\\Users\\Usuario\\pact-registry",
-      "runtime_root": "C:\\Users\\Usuario\\pact-runtime",
       "status": "ok"
     },
     "mcp": {
-      "registry_root": "C:\\Users\\Usuario\\pact-registry",
-      "runtime_root": "C:\\Users\\Usuario\\pact-runtime",
       "status": "ok"
     },
     "equal": true
