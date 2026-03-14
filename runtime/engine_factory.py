@@ -54,12 +54,24 @@ def build_runtime_components(
 ) -> RuntimeComponents:
     registry_skill_loader = YamlSkillLoader(registry_root)
 
+    def _resolve_local_overlay_repo_root(path: Path) -> Path:
+                                                                                       
+                                                                                     
+        p = path.resolve()
+        if p.name == "local" and p.parent.name == "skills":
+            return p.parent.parent
+        if (p / "skills").is_dir():
+            return p
+                                                                                              
+        return runtime_root
+
                                                                                
                                                                            
     resolved_local = local_skills_root or (runtime_root / "skills" / "local")
     if resolved_local.exists() and any(resolved_local.iterdir()):
+        local_repo_root = _resolve_local_overlay_repo_root(resolved_local)
         skill_loader: YamlSkillLoader | CompositeSkillLoader = CompositeSkillLoader(
-            [YamlSkillLoader(resolved_local.parent), registry_skill_loader]
+            [YamlSkillLoader(local_repo_root), registry_skill_loader]
         )
     else:
         skill_loader = registry_skill_loader
