@@ -22,7 +22,7 @@ permissions:
 env:
                                                                 
                                                                                     
-  REGISTRY_REF: 8aff407
+  REGISTRY_REF: 8680217
                                                                              
   MAX_PIN_DRIFT_COMMITS: 25
 
