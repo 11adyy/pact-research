@@ -44,9 +44,9 @@ class ReferenceResolver:
         if namespace == "outputs":
             return self._resolve_outputs(field, state)
 
-        raise ReferenceResolutionError(
-            f"Unknown reference namespace '{namespace}'."
-        )
+                                                                        
+                                                                          
+        return value
 
     def resolve_mapping(self, mapping: dict[str, Any], state: ExecutionState) -> dict[str, Any]:
         """
@@ -63,10 +63,10 @@ class ReferenceResolver:
 
     def _resolve_inputs(self, field: str, state: ExecutionState) -> Any:
         if field not in state.inputs:
-            raise ReferenceResolutionError(
-                f"Input '{field}' not found in execution inputs.",
-                skill_id=state.skill_id,
-            )
+                                                                                  
+                                                                             
+                                                                           
+            return None
         return state.inputs[field]
 
     def _resolve_vars(self, field: str, state: ExecutionState) -> Any:
