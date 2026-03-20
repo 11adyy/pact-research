@@ -1,0 +1,177 @@
+python : {"ts":"2026-03-20T11:44:07Z","event":"skill.execute.start","trace_id":
+"openai-eval-001","skill_id":"eval.validate","depth":0,"lineage":["eval.validat
+e"]}
+En línea: 1 Carácter: 1
++ python -m cli.main trace eval.validate --input-file test_inputs/eval_ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ({"ts":"2026-03-...val.validate"]} 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+{"ts":"2026-03-20T11:44:07Z","event":"step.execute.start","trace_id":"openai-ev
+al-001","skill_id":"eval.validate","step_id":"check_structure","uses":"data.sch
+ema.validate"}
+{"ts":"2026-03-20T11:44:07Z","event":"capability.execute.start","trace_id":"ope
+nai-eval-001","capability_id":"data.schema.validate","input_keys":["data","sche
+ma"],"required_conformance_profile":null}
+{"ts":"2026-03-20T11:44:07Z","event":"capability.execute.completed","trace_id":
+"openai-eval-001","capability_id":"data.schema.validate","duration_ms":6.032,"o
+utput_keys":["errors","valid"],"binding_id":"python_data_schema_validate","serv
+ice_id":"data_baseline","conformance_profile":"standard"}
+{"ts":"2026-03-20T11:44:07Z","event":"step.execute.completed","trace_id":"opena
+i-eval-001","skill_id":"eval.validate","step_id":"check_structure","uses":"data
+.schema.validate","duration_ms":282.155,"binding_id":"python_data_schema_valida
+te","service_id":"data_baseline"}
+{"ts":"2026-03-20T11:44:07Z","event":"step.execute.start","trace_id":"openai-ev
+al-001","skill_id":"eval.validate","step_id":"check_consistency","uses":"model.
+response.validate"}
+{"ts":"2026-03-20T11:44:07Z","event":"capability.execute.start","trace_id":"ope
+nai-eval-001","capability_id":"model.response.validate","input_keys":["evidence
+_context","output","validation_policy"],"required_conformance_profile":null}
+{"ts":"2026-03-20T11:44:11Z","event":"capability.execute.completed","trace_id":
+"openai-eval-001","capability_id":"model.response.validate","duration_ms":3680.
+171,"output_keys":["confidence_adjustment","issues","rationale","valid"],"bindi
+ng_id":"openapi_model_response_validate_openai_chat","service_id":"model_openai
+_chat","conformance_profile":"standard"}
+{"ts":"2026-03-20T11:44:11Z","event":"step.execute.completed","trace_id":"opena
+i-eval-001","skill_id":"eval.validate","step_id":"check_consistency","uses":"mo
+del.response.validate","duration_ms":3693.619,"binding_id":"openapi_model_respo
+nse_validate_openai_chat","service_id":"model_openai_chat"}
+{"ts":"2026-03-20T11:44:11Z","event":"step.execute.start","trace_id":"openai-ev
+al-001","skill_id":"eval.validate","step_id":"score_quality","uses":"eval.outpu
+t.score"}
+{"ts":"2026-03-20T11:44:11Z","event":"capability.execute.start","trace_id":"ope
+nai-eval-001","capability_id":"eval.output.score","input_keys":["output","rubri
+c"],"required_conformance_profile":null}
+{"ts":"2026-03-20T11:44:13Z","event":"capability.execute.completed","trace_id":
+"openai-eval-001","capability_id":"eval.output.score","duration_ms":1953.339,"o
+utput_keys":["dimensions","score"],"binding_id":"openapi_eval_output_score_open
+ai_chat","service_id":"model_openai_chat","conformance_profile":"standard"}
+{"ts":"2026-03-20T11:44:13Z","event":"step.execute.completed","trace_id":"opena
+i-eval-001","skill_id":"eval.validate","step_id":"score_quality","uses":"eval.o
+utput.score","duration_ms":1966.016,"binding_id":"openapi_eval_output_score_ope
+nai_chat","service_id":"model_openai_chat"}
+{"ts":"2026-03-20T11:44:13Z","event":"skill.execute.completed","trace_id":"open
+ai-eval-001","skill_id":"eval.validate","status":"completed","steps_total":3,"o
+utputs":["validation_passed","consistency_issues","validation_summary"],"durati
+on_ms":6485.05}
+[skill_start] Executing skill 'eval.validate'.
+
+[step_start] Starting step 'check_structure'.
+  step: check_structure
+
+[step_completed] Step 'check_structure' completed.
+  step: check_structure
+  produced_output: {'valid': True, 'errors': []}
+  binding_id: python_data_schema_validate
+  service_id: data_baseline
+  conformance_profile: standard
+  required_conformance_profile: experimental
+  fallback_used: False
+  fallback_chain: ['python_data_schema_validate']
+  attempts: [{'binding_id': 'python_data_schema_validate', 'service_id': 'data_baseline', 'status': 'success', 'conformance_profile': 'standard', 'required_conformance_profile': 'experimental'}]
+  resolution_plan: {'capability_id': 'data.schema.validate', 'selection_source': 'official_default', 'primary_binding_id': 'python_data_schema_validate', 'required_conformance_profile': 'experimental', 'chain': [{'binding_id': 'python_data_schema_validate', 'service_id': 'data_baseline', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}]}
+
+[step_start] Starting step 'check_consistency'.
+  step: check_consistency
+
+[DEBUG] OpenAI request: {"model": "gpt-4o-mini", "messages": [{"role": "system", "content": "You are a structured output validation assistant. You receive a model-generated output object, a validation policy, and optional evidence context. Evaluate the output against the policy dimensions: coherence, grounding, coverage, and uncertainty surfacing. Return a JSON object with: valid (boolean), issues (array of objects with dimension, severity, description), confidence_adjustment (number between -0.3 and 0.0, negative only), and rationale (string). Be conservative: only mark valid=true if all required dimensions pass. If evidence context is insufficient, report that as an issue instead of guessing. Return valid JSON only. No markdown fences, no prose outside the JSON object.\n"}, {"role": "user", "content": "Output to validate:\n{\"recommendation\": \"Proceed with pilot entry in EU market\", \"confidence_score\": 0.72, \"uncertainties\": [\"Regulatory timeline unclear\"], \"failure_modes\": [\"Budget overrun if c
+[DEBUG] OpenAI response: status=200 body={
+  "id": "chatcmpl-DLSYswh4HXQjlkTW70mkmccIS3lCR",
+  "object": "chat.completion",
+  "created": 1774007050,
+  "model": "gpt-4o-mini-2024-07-18",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"valid\": false,\n  \"issues\": [\n    {\n      \"dimension\": \"coherence\",\n      \"severity\": \"medium\",\n      \"description\": \"The recommendation lacks detailed justification or context regarding the pilot entry decision.\"\n    },\n    {\n      \"dimension\": \"grounding\",\n      \"severity\": \"high\",\n      \"description\": \"The output does not provide sufficient grounding in the evidence context, which is limited to mentioning market research synthesis and competitor analysis without specifics.\"\n    },\n    {\n      \"dimension\": \"coverage\",\n      \"severity\": \"medium\",\n      \"description\": \"The output does not cover potential risks or considerations related to the alternatives considered.\"\n    }\n  ]
+[step_completed] Step 'check_consistency' completed.
+  step: check_consistency
+  produced_output: {'valid': False, 'issues': [{'dimension': 'coherence', 'severity': 'medium', 'description': 'The recommendation lacks detailed justification or context regarding the pilot entry decision.'}, {'dimension': 'grounding', 'severity': 'high', 'description': 'The output does not provide sufficient grounding in the evidence context, which is limited to mentioning market research synthesis and competitor analysis without specifics.'}, {'dimension': 'coverage', 'severity': 'medium', 'description': 'The output does not cover potential risks or considerations related to the alternatives considered.'}], 'confidence_adjustment': -0.2, 'rationale': 'The output fails to meet the coherence and grounding requirements, as it lacks sufficient justification and context for the recommendation, and does not adequately address the alternatives or risks.'}
+  binding_id: openapi_model_response_validate_openai_chat
+  service_id: model_openai_chat
+  conformance_profile: standard
+  required_conformance_profile: experimental
+  fallback_used: False
+  fallback_chain: ['openapi_model_response_validate_openai_chat']
+  attempts: [{'binding_id': 'openapi_model_response_validate_openai_chat', 'service_id': 'model_openai_chat', 'status': 'success', 'conformance_profile': 'standard', 'required_conformance_profile': 'experimental'}]
+  resolution_plan: {'capability_id': 'model.response.validate', 'selection_source': 'local_selection', 'primary_binding_id': 'openapi_model_response_validate_openai_chat', 'required_conformance_profile': 'experimental', 'chain': [{'binding_id': 'openapi_model_response_validate_openai_chat', 'service_id': 'model_openai_chat', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}]}
+
+[step_start] Starting step 'score_quality'.
+  step: score_quality
+
+[DEBUG] OpenAI request: {"model": "gpt-4o-mini", "messages": [{"role": "system", "content": "You are an output quality scoring assistant. Evaluate the provided output artifact against quality dimensions. If a rubric is provided, use its dimensions and weights. If no rubric is provided, use these defaults: completeness, clarity, consistency, accuracy (equal weight).\nScore each dimension 0-100 and compute an overall weighted average. Be calibrated: 90+ excellent, 70-89 good, 50-69 adequate, below 50 poor.\nReturn a JSON object with: - score: number 0-100 (overall quality score) - dimensions: object mapping dimension names to scores (each 0-100)\nReturn valid JSON only. No markdown fences.\n"}, {"role": "user", "content": "Output to evaluate:\n{\"recommendation\": \"Proceed with pilot entry in EU market\", \"confidence_score\": 0.72, \"uncertainties\": [\"Regulatory timeline unclear\"], \"failure_modes\": [\"Budget overrun if compliance costs exceed estimates\"], \"evaluation_summary\": \"All options scored; pi
+[DEBUG] OpenAI response: status=200 body={
+  "id": "chatcmpl-DLSYvs3VuuNRxtyIXdJuc2neaYD2F",
+  "object": "chat.completion",
+  "created": 1774007053,
+  "model": "gpt-4o-mini-2024-07-18",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"score\": 85,\n  \"dimensions\": {\n    \"completeness\": 90,\n    \"clarity\": 80,\n    \"consistency\": 85,\n    \"accuracy\": 85\n  }\n}",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 263,
+    "completion_tokens": 48,
+    "total_tokens": 311,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_ca3e7d71bf"
+}
+
+[step_completed] Step 'score_quality' completed.
+  step: score_quality
+  produced_output: {'score': 85, 'dimensions': {'completeness': 90, 'clarity': 80, 'consistency': 85, 'accuracy': 85}}
+  binding_id: openapi_eval_output_score_openai_chat
+  service_id: model_openai_chat
+  conformance_profile: standard
+  required_conformance_profile: experimental
+  fallback_used: False
+  fallback_chain: ['openapi_eval_output_score_openai_chat', 'python_eval_output_score']
+  attempts: [{'binding_id': 'openapi_eval_output_score_openai_chat', 'service_id': 'model_openai_chat', 'status': 'success', 'conformance_profile': 'standard', 'required_conformance_profile': 'experimental'}]
+  resolution_plan: {'capability_id': 'eval.output.score', 'selection_source': 'official_default', 'primary_binding_id': 'openapi_eval_output_score_openai_chat', 'required_conformance_profile': 'experimental', 'chain': [{'binding_id': 'openapi_eval_output_score_openai_chat', 'service_id': 'model_openai_chat', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}, {'binding_id': 'python_eval_output_score', 'service_id': 'eval_baseline', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}]}
+
+[skill_completed] Skill 'eval.validate' completed.
+
+{
+  "validation_passed": true,
+  "consistency_issues": [
+    {
+      "dimension": "coherence",
+      "severity": "medium",
+      "description": "The recommendation lacks detailed justification or context regarding the pilot entry decision."
+    },
+    {
+      "dimension": "grounding",
+      "severity": "high",
+      "description": "The output does not provide sufficient grounding in the evidence context, which is limited to mentioning market research synthesis and competitor analysis without specifics."
+    },
+    {
+      "dimension": "coverage",
+      "severity": "medium",
+      "description": "The output does not cover potential risks or considerations related to the alternatives considered."
+    }
+  ],
+  "validation_summary": "The output fails to meet the coherence and grounding requirements, as it lacks sufficient justification and context for the recommendation, and does not adequately address the alternatives or risks."
+}

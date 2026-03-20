@@ -1,0 +1,349 @@
+python : {"ts":"2026-03-20T11:41:59Z","event":"skill.execute.start","trace_id":
+"openai-compare-001","skill_id":"analysis.compare","depth":0,"lineage":["analys
+is.compare"]}
+En línea: 1 Carácter: 1
++ python -m cli.main trace analysis.compare --input-file test_inputs/an ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ({"ts":"2026-03-...ysis.compare"]} 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+{"ts":"2026-03-20T11:41:59Z","event":"step.execute.start","trace_id":"openai-co
+mpare-001","skill_id":"analysis.compare","step_id":"analyze_options","uses":"ev
+al.option.analyze"}
+{"ts":"2026-03-20T11:41:59Z","event":"capability.execute.start","trace_id":"ope
+nai-compare-001","capability_id":"eval.option.analyze","input_keys":["context",
+"goal","options"],"required_conformance_profile":null}
+{"ts":"2026-03-20T11:42:08Z","event":"capability.execute.completed","trace_id":
+"openai-compare-001","capability_id":"eval.option.analyze","duration_ms":9140.2
+82,"output_keys":["analysis_notes","analyzed_options"],"binding_id":"openapi_ev
+al_option_analyze_openai_chat","service_id":"model_openai_chat","conformance_pr
+ofile":"standard"}
+{"ts":"2026-03-20T11:42:08Z","event":"step.execute.completed","trace_id":"opena
+i-compare-001","skill_id":"analysis.compare","step_id":"analyze_options","uses"
+:"eval.option.analyze","duration_ms":9369.377,"binding_id":"openapi_eval_option
+_analyze_openai_chat","service_id":"model_openai_chat"}
+{"ts":"2026-03-20T11:42:08Z","event":"step.execute.start","trace_id":"openai-co
+mpare-001","skill_id":"analysis.compare","step_id":"score_options","uses":"eval
+.option.score"}
+{"ts":"2026-03-20T11:42:08Z","event":"capability.execute.start","trace_id":"ope
+nai-compare-001","capability_id":"eval.option.score","input_keys":["criteria","
+goal","options"],"required_conformance_profile":null}
+{"ts":"2026-03-20T11:42:27Z","event":"capability.execute.completed","trace_id":
+"openai-compare-001","capability_id":"eval.option.score","duration_ms":18814.72
+7,"output_keys":["comparative_summary","criteria_used","scored_options","tradeo
+ffs"],"binding_id":"openapi_eval_option_score_openai_chat","service_id":"model_
+openai_chat","conformance_profile":"standard"}
+{"ts":"2026-03-20T11:42:27Z","event":"step.execute.completed","trace_id":"opena
+i-compare-001","skill_id":"analysis.compare","step_id":"score_options","uses":"
+eval.option.score","duration_ms":18838.901,"binding_id":"openapi_eval_option_sc
+ore_openai_chat","service_id":"model_openai_chat"}
+{"ts":"2026-03-20T11:42:27Z","event":"step.execute.start","trace_id":"openai-co
+mpare-001","skill_id":"analysis.compare","step_id":"assess_quality","uses":"eva
+l.output.score"}
+{"ts":"2026-03-20T11:42:27Z","event":"capability.execute.start","trace_id":"ope
+nai-compare-001","capability_id":"eval.output.score","input_keys":["output","ru
+bric"],"required_conformance_profile":null}
+{"ts":"2026-03-20T11:42:29Z","event":"capability.execute.completed","trace_id":
+"openai-compare-001","capability_id":"eval.output.score","duration_ms":2243.063
+,"output_keys":["dimensions","score"],"binding_id":"openapi_eval_output_score_o
+penai_chat","service_id":"model_openai_chat","conformance_profile":"standard"}
+{"ts":"2026-03-20T11:42:29Z","event":"step.execute.completed","trace_id":"opena
+i-compare-001","skill_id":"analysis.compare","step_id":"assess_quality","uses":
+"eval.output.score","duration_ms":2252.877,"binding_id":"openapi_eval_output_sc
+ore_openai_chat","service_id":"model_openai_chat"}
+{"ts":"2026-03-20T11:42:29Z","event":"skill.execute.completed","trace_id":"open
+ai-compare-001","skill_id":"analysis.compare","status":"completed","steps_total
+":3,"outputs":["analyzed_options","scored_options","criteria_used","comparative
+_summary","tradeoffs","comparison_quality"],"duration_ms":30998.419}
+[skill_start] Executing skill 'analysis.compare'.
+
+[step_start] Starting step 'analyze_options'.
+  step: analyze_options
+
+[DEBUG] OpenAI request: {"model": "gpt-4o-mini", "messages": [{"role": "system", "content": "You are a qualitative analysis assistant for decision options. For each option provided, identify specific pros, cons, risks (with severity), and underlying assumptions. Ground your analysis in the goal and context \u2014 do not invent facts not present in the input. Be specific, not generic. Do NOT assign numeric scores \u2014 only qualitative assessment.\nReturn a JSON object with: - analyzed_options: array, each with option_id (string matching the input option id),\n  pros (array of strings), cons (array of strings),\n  risks (array of {description, severity: low|medium|high}),\n  assumptions (array of strings).\n- analysis_notes: brief string on methodology or evidence gaps.\nReturn valid JSON only. No markdown fences.\n"}, {"role": "user", "content": "Goal: Which cloud provider best fits our needs for an AI workload with low latency, moderate budget, and strong ML tooling?\n\nOptions to analyze:\n[{\"id\": \"aws\
+[DEBUG] OpenAI response: status=200 body={
+  "id": "chatcmpl-DLSWo2iJUCmzS0CDq1Ln8cHI6nBB3",
+  "object": "chat.completion",
+  "created": 1774006922,
+  "model": "gpt-4o-mini-2024-07-18",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"analyzed_options\": [\n    {\n      \"option_id\": \"aws\",\n      \"pros\": [\n        \"Mature platform with a broad service catalog.\",\n        \"High market share indicates reliability and support.\",\n        \"Low latency suitable for AI workloads.\"\n      ],\n      \"cons\": [\n        \"Medium-high cost may exceed moderate budget.\",\n        \"Complex pricing structure can lead to unexpected costs.\"\n      ],\n      \"risks\": [\n        {\n          \"description\": \"Potential for budget overruns due to complex pricing.\",\n          \"severity\": \"high\"\n        },\n        {\n          \"description\": \"Dependency on a large ecosystem may lead to vendor lock-in.\",\n          \"severity\": \"medium\"\n        }\n
+[step_completed] Step 'analyze_options' completed.
+  step: analyze_options
+  produced_output: {'analyzed_options': [{'option_id': 'aws', 'pros': ['Mature platform with a broad service catalog.', 'High market share indicates reliability and support.', 'Low latency suitable for AI workloads.'], 'cons': ['Medium-high cost may exceed moderate budget.', 'Complex pricing structure can lead to unexpected costs.'], 'risks': [{'description': 'Potential for budget overruns due to complex pricing.', 'severity': 'high'}, {'description': 'Dependency on a large ecosystem may lead to vendor lock-in.', 'severity': 'medium'}], 'assumptions': ['The organization can manage the complexity of AWS services.', 'The budget can accommodate potential cost fluctuations.']}, {'option_id': 'gcp', 'pros': ['Strong focus on AI/ML tools and services.', 'Competitive pricing aligns with moderate budget.', 'Low latency suitable for AI workloads.'], 'cons': ['Growing enterprise presence may lack the maturity of competitors.', 'Limited ecosystem compared to AWS.'], 'risks': [{'description': 'Potential lack of support and resources due to a smaller ecosystem.', 'severity': 'medium'}, {'description': 'Risk of underestimating the learning curve for GCP tools.', 'severity': 'medium'}], 'assumptions': ['The organization values AI/ML capabilities over a broader service catalog.', 'The team is willing to adapt to a growing platform.']}, {'option_id': 'azure', 'pros': ['Strong integration with existing enterprise systems.', 'Hybrid cloud capabilities provide flexibility.', 'Low latency suitable for AI workloads.'], 'cons': ['Medium cost may still be a concern for a moderate budget.', 'Focus on enterprise may overlook niche AI/ML needs.'], 'risks': [{'description': 'Risk of overpaying for enterprise features not fully utilized.', 'severity': 'medium'}, {'description': 'Potential limitations in cutting-edge AI/ML tools compared to GCP.', 'severity': 'medium'}], 'assumptions': ['The organization has existing Microsoft infrastructure.', "The team is familiar with Azure's ecosystem and tools."]}], 'analysis_notes': 'The analysis is based on the provided attributes of each cloud provider and their alignment with the specified goals. No external data was used, and the assessment is limited to the context given.'}
+  binding_id: openapi_eval_option_analyze_openai_chat
+  service_id: model_openai_chat
+  conformance_profile: standard
+  required_conformance_profile: experimental
+  fallback_used: False
+  fallback_chain: ['openapi_eval_option_analyze_openai_chat', 'python_eval_option_analyze']
+  attempts: [{'binding_id': 'openapi_eval_option_analyze_openai_chat', 'service_id': 'model_openai_chat', 'status': 'success', 'conformance_profile': 'standard', 'required_conformance_profile': 'experimental'}]
+  resolution_plan: {'capability_id': 'eval.option.analyze', 'selection_source': 'official_default', 'primary_binding_id': 'openapi_eval_option_analyze_openai_chat', 'required_conformance_profile': 'experimental', 'chain': [{'binding_id': 'openapi_eval_option_analyze_openai_chat', 'service_id': 'model_openai_chat', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}, {'binding_id': 'python_eval_option_analyze', 'service_id': 'eval_baseline', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}]}
+
+[step_start] Starting step 'score_options'.
+  step: score_options
+
+[DEBUG] OpenAI request: {"model": "gpt-4o-mini", "messages": [{"role": "system", "content": "You are a multi-criteria decision scoring assistant. Score each option against evaluation criteria on a 0.0 to 1.0 scale. If criteria are not provided, infer 3-5 relevant criteria from the goal.\nReturn a JSON object with EXACTLY these four top-level keys:\n1. \"scored_options\": array of objects, each with option_id, label,\n   overall_score (weighted average 0.0-1.0),\n   per_criterion_scores (object mapping criterion name to score 0.0-1.0),\n   strengths (array of strings), weaknesses (array of strings).\n\n2. \"criteria_used\": array of {name, description, weight}.\n3. \"comparative_summary\": narrative string comparing top options.\n4. \"tradeoffs\": array of {tension, gained, lost}.\nReturn valid JSON only. No markdown fences.\n"}, {"role": "user", "content": "Goal: Which cloud provider best fits our needs for an AI workload with low latency, moderate budget, and strong ML tooling?\n\nOptions to score:\n[{\"id\"
+[DEBUG] OpenAI response: status=200 body={
+  "id": "chatcmpl-DLSWwu2fbJ4ZQpgQvSkJ4pgXWHlRK",
+  "object": "chat.completion",
+  "created": 1774006930,
+  "model": "gpt-4o-mini-2024-07-18",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"scored_options\": [\n    {\n      \"option_id\": \"aws\",\n      \"label\": \"AWS\",\n      \"overall_score\": 0.75,\n      \"per_criterion_scores\": {\n        \"latency\": 1.0,\n        \"cost\": 0.6,\n        \"ml_tooling\": 0.9,\n        \"ecosystem\": 1.0\n      },\n      \"strengths\": [\n        \"Lowest latency\",\n        \"Largest ecosystem with extensive ML tools\",\n        \"High market share and reliability\"\n      ],\n      \"weaknesses\": [\n        \"Higher cost compared to others\",\n        \"Complex pricing structure\"\n      ]\n    },\n    {\n      \"option_id\": \"gcp\",\n      \"label\": \"Google Cloud\",\n      \"overall_score\": 0.85,\n      \"per_criterion_scores\": {\n        \"latency\": 1.0,\n        \
+[step_completed] Step 'score_options' completed.
+  step: score_options
+  produced_output: {'scored_options': [{'option_id': 'aws', 'label': 'AWS', 'overall_score': 0.75, 'per_criterion_scores': {'latency': 1.0, 'cost': 0.6, 'ml_tooling': 0.9, 'ecosystem': 1.0}, 'strengths': ['Lowest latency', 'Largest ecosystem with extensive ML tools', 'High market share and reliability'], 'weaknesses': ['Higher cost compared to others', 'Complex pricing structure']}, {'option_id': 'gcp', 'label': 'Google Cloud', 'overall_score': 0.85, 'per_criterion_scores': {'latency': 1.0, 'cost': 0.8, 'ml_tooling': 1.0, 'ecosystem': 0.7}, 'strengths': ['Strong in AI/ML capabilities', 'Competitive pricing', 'Low latency'], 'weaknesses': ['Ecosystem not as mature as AWS', 'Growing presence may lead to instability']}, {'option_id': 'azure', 'label': 'Azure', 'overall_score': 0.7, 'per_criterion_scores': {'latency': 1.0, 'cost': 0.7, 'ml_tooling': 0.8, 'ecosystem': 0.8}, 'strengths': ['Strong enterprise integration', 'Good AI services', 'Low latency'], 'weaknesses': ['Moderate cost', 'Less focus on pure AI/ML compared to GCP']}], 'criteria_used': [{'name': 'latency', 'description': 'The speed of data transfer and processing.', 'weight': 0.25}, {'name': 'cost', 'description': 'The overall expense associated with using the cloud provider.', 'weight': 0.25}, {'name': 'ml_tooling', 'description': 'The availability and quality of machine learning tools and services.', 'weight': 0.25}, {'name': 'ecosystem', 'description': "The breadth and maturity of the cloud provider's service offerings.", 'weight': 0.25}], 'comparative_summary': 'Google Cloud stands out as the best option with the highest overall score of 0.85, excelling in AI/ML tooling and competitive pricing while maintaining low latency. AWS follows closely with a score of 0.75, offering the largest ecosystem and lowest latency but at a higher cost. Azure, while providing strong enterprise integration and low latency, scores the lowest at 0.70 due to its moderate cost and less focus on AI/ML compared to GCP.', 'tradeoffs': [{'tension': 'Cost vs. Tooling', 'gained': 'Better ML tooling with GCP', 'lost': 'Higher costs with AWS'}, {'tension': 'Ecosystem vs. Specialization', 'gained': 'Strong ecosystem with AWS', 'lost': 'Less specialized AI/ML focus'}]}
+  binding_id: openapi_eval_option_score_openai_chat
+  service_id: model_openai_chat
+  conformance_profile: standard
+  required_conformance_profile: experimental
+  fallback_used: False
+  fallback_chain: ['openapi_eval_option_score_openai_chat', 'python_eval_option_score']
+  attempts: [{'binding_id': 'openapi_eval_option_score_openai_chat', 'service_id': 'model_openai_chat', 'status': 'success', 'conformance_profile': 'standard', 'required_conformance_profile': 'experimental'}]
+  resolution_plan: {'capability_id': 'eval.option.score', 'selection_source': 'official_default', 'primary_binding_id': 'openapi_eval_option_score_openai_chat', 'required_conformance_profile': 'experimental', 'chain': [{'binding_id': 'openapi_eval_option_score_openai_chat', 'service_id': 'model_openai_chat', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}, {'binding_id': 'python_eval_option_score', 'service_id': 'eval_baseline', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}]}
+
+[step_start] Starting step 'assess_quality'.
+  step: assess_quality
+
+[DEBUG] OpenAI request: {"model": "gpt-4o-mini", "messages": [{"role": "system", "content": "You are an output quality scoring assistant. Evaluate the provided output artifact against quality dimensions. If a rubric is provided, use its dimensions and weights. If no rubric is provided, use these defaults: completeness, clarity, consistency, accuracy (equal weight).\nScore each dimension 0-100 and compute an overall weighted average. Be calibrated: 90+ excellent, 70-89 good, 50-69 adequate, below 50 poor.\nReturn a JSON object with: - score: number 0-100 (overall quality score) - dimensions: object mapping dimension names to scores (each 0-100)\nReturn valid JSON only. No markdown fences.\n"}, {"role": "user", "content": "Output to evaluate:\n{\"analyzed_options\": [{\"option_id\": \"aws\", \"pros\": [\"Mature platform with a broad service catalog.\", \"High market share indicates reliability and support.\", \"Low latency suitable for AI workloads.\"], \"cons\": [\"Medium-high cost may exceed moderate budget.\
+[DEBUG] OpenAI response: status=200 body={
+  "id": "chatcmpl-DLSXFIqfQ9eqwEgs6Uhzlniy4y6sW",
+  "object": "chat.completion",
+  "created": 1774006949,
+  "model": "gpt-4o-mini-2024-07-18",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"score\": 85,\n  \"dimensions\": {\n    \"completeness\": 90,\n    \"clarity\": 85,\n    \"consistency\": 80,\n    \"accuracy\": 85\n  }\n}",
+        "refusal": null,
+        "annotations": []
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1071,
+    "completion_tokens": 48,
+    "total_tokens": 1119,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": "fp_ca3e7d71bf"
+}
+
+[step_completed] Step 'assess_quality' completed.
+  step: assess_quality
+  produced_output: {'score': 85, 'dimensions': {'completeness': 90, 'clarity': 85, 'consistency': 80, 'accuracy': 85}}
+  binding_id: openapi_eval_output_score_openai_chat
+  service_id: model_openai_chat
+  conformance_profile: standard
+  required_conformance_profile: experimental
+  fallback_used: False
+  fallback_chain: ['openapi_eval_output_score_openai_chat', 'python_eval_output_score']
+  attempts: [{'binding_id': 'openapi_eval_output_score_openai_chat', 'service_id': 'model_openai_chat', 'status': 'success', 'conformance_profile': 'standard', 'required_conformance_profile': 'experimental'}]
+  resolution_plan: {'capability_id': 'eval.output.score', 'selection_source': 'official_default', 'primary_binding_id': 'openapi_eval_output_score_openai_chat', 'required_conformance_profile': 'experimental', 'chain': [{'binding_id': 'openapi_eval_output_score_openai_chat', 'service_id': 'model_openai_chat', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}, {'binding_id': 'python_eval_output_score', 'service_id': 'eval_baseline', 'conformance_profile': 'standard', 'eligible': True, 'reason': 'eligible'}]}
+
+[skill_completed] Skill 'analysis.compare' completed.
+
+{
+  "analyzed_options": [
+    {
+      "option_id": "aws",
+      "pros": [
+        "Mature platform with a broad service catalog.",
+        "High market share indicates reliability and support.",
+        "Low latency suitable for AI workloads."
+      ],
+      "cons": [
+        "Medium-high cost may exceed moderate budget.",
+        "Complex pricing structure can lead to unexpected costs."
+      ],
+      "risks": [
+        {
+          "description": "Potential for budget overruns due to complex pricing.",
+          "severity": "high"
+        },
+        {
+          "description": "Dependency on a large ecosystem may lead to vendor lock-in.",
+          "severity": "medium"
+        }
+      ],
+      "assumptions": [
+        "The organization can manage the complexity of AWS services.",
+        "The budget can accommodate potential cost fluctuations."
+      ]
+    },
+    {
+      "option_id": "gcp",
+      "pros": [
+        "Strong focus on AI/ML tools and services.",
+        "Competitive pricing aligns with moderate budget.",
+        "Low latency suitable for AI workloads."
+      ],
+      "cons": [
+        "Growing enterprise presence may lack the maturity of competitors.",
+        "Limited ecosystem compared to AWS."
+      ],
+      "risks": [
+        {
+          "description": "Potential lack of support and resources due to a smaller ecosystem.",
+          "severity": "medium"
+        },
+        {
+          "description": "Risk of underestimating the learning curve for GCP tools.",
+          "severity": "medium"
+        }
+      ],
+      "assumptions": [
+        "The organization values AI/ML capabilities over a broader service catalog.",
+        "The team is willing to adapt to a growing platform."
+      ]
+    },
+    {
+      "option_id": "azure",
+      "pros": [
+        "Strong integration with existing enterprise systems.",
+        "Hybrid cloud capabilities provide flexibility.",
+        "Low latency suitable for AI workloads."
+      ],
+      "cons": [
+        "Medium cost may still be a concern for a moderate budget.",
+        "Focus on enterprise may overlook niche AI/ML needs."
+      ],
+      "risks": [
+        {
+          "description": "Risk of overpaying for enterprise features not fully utilized.",
+          "severity": "medium"
+        },
+        {
+          "description": "Potential limitations in cutting-edge AI/ML tools compared to GCP.",
+          "severity": "medium"
+        }
+      ],
+      "assumptions": [
+        "The organization has existing Microsoft infrastructure.",
+        "The team is familiar with Azure's ecosystem and tools."
+      ]
+    }
+  ],
+  "scored_options": [
+    {
+      "option_id": "aws",
+      "label": "AWS",
+      "overall_score": 0.75,
+      "per_criterion_scores": {
+        "latency": 1.0,
+        "cost": 0.6,
+        "ml_tooling": 0.9,
+        "ecosystem": 1.0
+      },
+      "strengths": [
+        "Lowest latency",
+        "Largest ecosystem with extensive ML tools",
+        "High market share and reliability"
+      ],
+      "weaknesses": [
+        "Higher cost compared to others",
+        "Complex pricing structure"
+      ]
+    },
+    {
+      "option_id": "gcp",
+      "label": "Google Cloud",
+      "overall_score": 0.85,
+      "per_criterion_scores": {
+        "latency": 1.0,
+        "cost": 0.8,
+        "ml_tooling": 1.0,
+        "ecosystem": 0.7
+      },
+      "strengths": [
+        "Strong in AI/ML capabilities",
+        "Competitive pricing",
+        "Low latency"
+      ],
+      "weaknesses": [
+        "Ecosystem not as mature as AWS",
+        "Growing presence may lead to instability"
+      ]
+    },
+    {
+      "option_id": "azure",
+      "label": "Azure",
+      "overall_score": 0.7,
+      "per_criterion_scores": {
+        "latency": 1.0,
+        "cost": 0.7,
+        "ml_tooling": 0.8,
+        "ecosystem": 0.8
+      },
+      "strengths": [
+        "Strong enterprise integration",
+        "Good AI services",
+        "Low latency"
+      ],
+      "weaknesses": [
+        "Moderate cost",
+        "Less focus on pure AI/ML compared to GCP"
+      ]
+    }
+  ],
+  "criteria_used": [
+    {
+      "name": "latency",
+      "description": "The speed of data transfer and processing.",
+      "weight": 0.25
+    },
+    {
+      "name": "cost",
+      "description": "The overall expense associated with using the cloud provider.",
+      "weight": 0.25
+    },
+    {
+      "name": "ml_tooling",
+      "description": "The availability and quality of machine learning tools and services.",
+      "weight": 0.25
+    },
+    {
+      "name": "ecosystem",
+      "description": "The breadth and maturity of the cloud provider's service offerings.",
+      "weight": 0.25
+    }
+  ],
+  "comparative_summary": "Google Cloud stands out as the best option with the highest overall score of 0.85, excelling in AI/ML tooling and competitive pricing while maintaining low latency. AWS follows closely with a score of 0.75, offering the largest ecosystem and lowest latency but at a higher cost. Azure, while providing strong enterprise integration and low latency, scores the lowest at 0.70 due to its moderate cost and less focus on AI/ML compared to GCP.",
+  "tradeoffs": [
+    {
+      "tension": "Cost vs. Tooling",
+      "gained": "Better ML tooling with GCP",
+      "lost": "Higher costs with AWS"
+    },
+    {
+      "tension": "Ecosystem vs. Specialization",
+      "gained": "Strong ecosystem with AWS",
+      "lost": "Less specialized AI/ML focus"
+    }
+  ],
+  "comparison_quality": 85
+}
