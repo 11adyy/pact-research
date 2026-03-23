@@ -47,4 +47,6 @@ Use `PACT_RUNTIME_REGISTRY_ROOT` to select another local catalog. Configure `PAC
 
 ## Reference material
 
+- [docs/INSTALLATION.md](docs/INSTALLATION.md)
 - [docs/OBSERVABILITY.md](docs/OBSERVABILITY.md)
+- [LICENSE](LICENSE)
