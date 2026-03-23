@@ -175,6 +175,8 @@ class CapabilitySpec:
     replacement: str | None = None
     aliases: tuple[str, ...] = ()
     source_file: str | None = None
+    cognitive_hints: dict[str, Any] | None = None
+    safety: dict[str, Any] | None = None
 
 
 @dataclass(frozen=True)
@@ -263,6 +265,10 @@ class ExecutionOptions:
     trace_enabled: bool = True
     required_conformance_profile: str | None = None
     audit_mode: str | None = None
+                                                                    
+    trust_level: str = "standard"
+                                                                                        
+    confirmed_capabilities: frozenset[str] = field(default_factory=frozenset)
 
 
 @dataclass(frozen=True)
