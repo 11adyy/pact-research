@@ -1,0 +1,143 @@
+# Deployment Guide
+
+> From development install to a hardened production instance.
+
+---
+
+## Prerequisites
+
+- Python ≥ 3.11
+- `pact-registry` cloned alongside `pact-runtime` (sibling directories)
+
+---
+
+## 1. Development install
+
+```bash
+cd pact-runtime
+python -m pip install -e ".[all]"
+```
+
+Copy and fill `.env.example`:
+
+```bash
+cp .env.example .env
+# Edit .env — at minimum set OPENAI_API_KEY for LLM-backed capabilities
+```
+
+Verify:
+
+```bash
+pact-runtime doctor
+```
+
+---
+
+## 2. Production install
+
+### 2a. Locked dependencies
+
+```bash
+pip install ".[all]" --no-deps   # after resolving versions in a lockfile
+```
+
+Or use a container:
+
+```dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY . .
+RUN pip install --no-cache-dir ".[all]"
+CMD ["pact-runtime", "serve"]
+```
+
+### 2b. Environment variables
+
+| Variable | Required | Default | Purpose |
+|----------|:--------:|---------|---------|
+| `OPENAI_API_KEY` | For LLM caps | — | OpenAI API key |
+| `PACT_RUNTIME_FS_ROOT` | No | `cwd` | Sandbox root for `fs.file.read` |
+| `PACT_RUNTIME_AUDIT_DEFAULT_MODE` | No | `standard` | `off` / `standard` / `full` |
+| `PACT_RUNTIME_MAX_WORKERS` | No | CPU+4 | Concurrent step threads |
+| `PACT_RUNTIME_API_KEY` | For HTTP | — | Server API key for `x-api-key` auth |
+| `PACT_RUNTIME_HOST` | No | `127.0.0.1` | Bind address |
+| `PACT_RUNTIME_PORT` | No | `8080` | Bind port |
+| `PACT_RUNTIME_DEBUG` | No | unset | Enable debug logging |
+
+### 2c. Reverse proxy (recommended)
+
+The built-in HTTP server is single-process. For production:
+
+```
+Client  →  nginx / Caddy (TLS, CORS, auth)  →  pact-runtime serve (:8080)
+```
+
+Nginx example:
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name skills.example.com;
+
+    ssl_certificate     /etc/ssl/certs/skills.pem;
+    ssl_certificate_key /etc/ssl/private/skills.key;
+
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        # Body limit (should match PACT_RUNTIME max_request_body_bytes)
+        client_max_body_size 2m;
+    }
+}
+```
+
+---
+
+## 3. Scaling
+
+### Single instance
+
+Each pact-runtime instance is stateless (aside from the audit JSONL file).
+Scale horizontally by running multiple instances behind a load balancer.
+
+### Audit at scale
+
+- With multiple instances, each writes to its own audit file.
+- Use `PACT_RUNTIME_AUDIT_DEFAULT_MODE=off` to disable audit when you have
+  external observability (e.g., OpenTelemetry).
+- Periodically purge old records: `pact-runtime purge --older-than-days 30`.
+
+### Worker tuning
+
+```bash
+# For IO-heavy workloads (many OpenAPI calls)
+export PACT_RUNTIME_MAX_WORKERS=16
+
+# For CPU-heavy workloads (large text baselines)
+export PACT_RUNTIME_MAX_WORKERS=4
+```
+
+---
+
+## 4. Health check
+
+```bash
+curl http://127.0.0.1:8080/health
+# → {"status": "ok"}
+```
+
+---
+
+## 5. Security checklist
+
+Before exposing to a network:
+
+- [ ] Set `PACT_RUNTIME_API_KEY` to a strong random value.
+- [ ] Set `PACT_RUNTIME_FS_ROOT` to a dedicated read-only directory.
+- [ ] Put a TLS-terminating reverse proxy in front.
+- [ ] Review `docs/SECURITY.md` for SSRF, LFI, rate limiting details.
+- [ ] Set `PACT_RUNTIME_AUDIT_DEFAULT_MODE=full` for regulated environments.
+- [ ] Restrict `allow_private_networks` to `False` (default) unless on-prem.
