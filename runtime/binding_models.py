@@ -67,7 +67,7 @@ class ResolvedBinding:
     operation_id: str
     protocol: str
     binding_source: str                                    
-    selection_source: str                                        
+    selection_source: str                                                                
 
 
 @dataclass(frozen=True)
