@@ -31,11 +31,28 @@ dependencies = [
 [project.optional-dependencies]
 pdf = ["PyPDF2>=3.0"]
 web = ["beautifulsoup4>=4.12"]
+otel = [
+    "opentelemetry-api>=1.20",
+    "opentelemetry-sdk>=1.20",
+    "opentelemetry-exporter-otlp>=1.20",
+]
 all = ["PyPDF2>=3.0", "beautifulsoup4>=4.12"]
 dev = ["pytest>=7.0", "PyPDF2>=3.0", "beautifulsoup4>=4.12"]
 
 [project.scripts]
 pact-runtime = "cli.main:main"
+
+[project.entry-points."pact_runtime.auth"]
+                                                       
+                                      
+
+[project.entry-points."pact_runtime.invoker"]
+                                                    
+                                                      
+
+[project.entry-points."pact_runtime.binding_source"]
+                                                     
+                                                  
 
 
 [tool.setuptools.packages.find]

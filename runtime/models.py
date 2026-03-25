@@ -269,6 +269,13 @@ class ExecutionOptions:
     trust_level: str = "standard"
                                                                                         
     confirmed_capabilities: frozenset[str] = field(default_factory=frozenset)
+                                                                        
+                                                                             
+    max_lineage_timeout_seconds: float | None = None
+                                                                         
+    max_workers: int | None = None
+                                                                        
+    default_step_timeout_seconds: float | None = None
 
 
 @dataclass(frozen=True)
@@ -300,6 +307,9 @@ class ExecutionContext:
     lineage: tuple[str, ...] = ()
     trace_id: str | None = None
     channel: str | None = None
+                                                                   
+                                                            
+    deadline: float | None = None
 
 
 @dataclass(frozen=True)

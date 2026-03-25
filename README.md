@@ -51,4 +51,5 @@ Use `PACT_RUNTIME_REGISTRY_ROOT` to select another local catalog. Configure `PAC
 - [docs/BINDING_GUIDE.md](docs/BINDING_GUIDE.md)
 - [docs/OBSERVABILITY.md](docs/OBSERVABILITY.md)
 - [docs/CI_AND_TESTING.md](docs/CI_AND_TESTING.md)
+- [CONTRIBUTING.md](CONTRIBUTING.md)
 - [LICENSE](LICENSE)
