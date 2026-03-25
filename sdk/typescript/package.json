@@ -1,0 +1,22 @@
+{
+  "name": "@pact-runtime/client",
+  "version": "0.1.0",
+  "description": "TypeScript client SDK for pact-runtime runtime API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "generate": "bash ../generate_ts.sh",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://example.invalid/pact-runtime"
+  },
+  "keywords": ["agent", "skills", "ai", "sdk", "mcp"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "files": ["dist/", "README.md"]
+}
