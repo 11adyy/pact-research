@@ -100,6 +100,80 @@ server {
 
 ### Single instance
 
+---
+
+## 4. CLI `serve` Command
+
+Start the HTTP API server directly:
+
+```bash
+pact-runtime serve
+```
+
+| Flag              | Env Variable                | Default     | Description                      |
+|-------------------|-----------------------------|-------------|----------------------------------|
+| `--host`          | `PACT_RUNTIME_HOST`         | `127.0.0.1` | Bind address                     |
+| `--port`          | `PACT_RUNTIME_PORT`         | `8080`      | Bind port                        |
+| `--api-key`       | `PACT_RUNTIME_API_KEY`      | *(none)*    | API key for `x-api-key` auth     |
+| `--cors-origins`  | `PACT_RUNTIME_CORS_ORIGINS` | *(none)*    | Comma-separated allowed origins  |
+
+Example:
+
+```bash
+pact-runtime serve --host 0.0.0.0 --port 9090 --api-key my-secret
+```
+
+---
+
+## 5. Docker
+
+### Build
+
+```bash
+docker build -t pact-runtime .
+```
+
+### Run
+
+```bash
+docker run -p 8080:8080 \
+  -e PACT_RUNTIME_API_KEY=my-secret \
+  -e OPENAI_API_KEY=sk-... \
+  pact-runtime
+```
+
+### docker-compose
+
+Create a `.env` file in the project root:
+
+```dotenv
+PACT_RUNTIME_API_KEY=my-secret
+OPENAI_API_KEY=sk-...
+```
+
+Then:
+
+```bash
+docker compose up -d
+```
+
+The compose file exposes port `${PACT_RUNTIME_PORT:-8080}`, mounts `./bindings` read-write, and creates a `skills-data` named volume for artifacts.  A health check hits `GET /v1/health` every 30 s.
+
+### Environment Variables Reference
+
+| Variable                       | Default    | Purpose                          |
+|--------------------------------|------------|----------------------------------|
+| `PACT_RUNTIME_HOST`            | `0.0.0.0`  | Bind address inside container   |
+| `PACT_RUNTIME_PORT`            | `8080`     | Server port                      |
+| `PACT_RUNTIME_API_KEY`         |            | Auth for protected routes        |
+| `PACT_RUNTIME_CORS_ORIGINS`    |            | Comma-separated origins          |
+| `PACT_RUNTIME_MAX_WORKERS`     | CPU+4      | DAG scheduler thread pool        |
+| `PACT_RUNTIME_ASYNC_WORKERS`   | `4`        | Async execution thread pool      |
+| `PACT_RUNTIME_MAX_RUNS`        | `100`      | Max tracked async runs           |
+| `OPENAI_API_KEY`               |            | For LLM-backed skills            |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` |            | OTel collector endpoint          |
+| `OTEL_SERVICE_NAME`            | `pact-runtime` | OTel service name           |
+
 Each pact-runtime instance is stateless (aside from the audit JSONL file).
 Scale horizontally by running multiple instances behind a load balancer.
 

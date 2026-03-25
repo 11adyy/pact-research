@@ -128,6 +128,10 @@ def build_runtime_components(
 
     engine.nested_skill_runner.execution_engine = engine
 
+                                                               
+    from runtime.plugins import discover_all
+    discovered_plugins = discover_all()
+
     return RuntimeComponents(
         engine=engine,
         skill_loader=skill_loader,

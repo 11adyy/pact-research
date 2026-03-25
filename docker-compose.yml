@@ -1,0 +1,29 @@
+services:
+  pact-runtime:
+    build: .
+    ports:
+      - "${PACT_RUNTIME_PORT:-8080}:8080"
+    environment:
+      - PACT_RUNTIME_HOST=0.0.0.0
+      - PACT_RUNTIME_PORT=8080
+      - PACT_RUNTIME_API_KEY=${PACT_RUNTIME_API_KEY:-}
+      - PACT_RUNTIME_CORS_ORIGINS=${PACT_RUNTIME_CORS_ORIGINS:-}
+      - PACT_RUNTIME_MAX_WORKERS=${PACT_RUNTIME_MAX_WORKERS:-}
+      - PACT_RUNTIME_ASYNC_WORKERS=${PACT_RUNTIME_ASYNC_WORKERS:-4}
+      - PACT_RUNTIME_MAX_RUNS=${PACT_RUNTIME_MAX_RUNS:-100}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+      - OTEL_SERVICE_NAME=pact-runtime
+    volumes:
+      - ./bindings:/app/bindings
+      - skills-data:/app/artifacts
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/v1/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  skills-data:
