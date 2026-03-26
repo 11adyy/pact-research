@@ -4,6 +4,7 @@ Example: Using the pact-runtime Python client.
 Demonstrates synchronous, asynchronous, and streaming execution.
 Requires a running server: pact-runtime serve
 """
+
 from sdk.python.pact_runtime_client import AgentSkillsClient
 
 

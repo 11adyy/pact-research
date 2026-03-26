@@ -67,8 +67,8 @@ class ResolvedBinding:
     service_id: str
     operation_id: str
     protocol: str
-    binding_source: str                                    
-    selection_source: str                                                                
+    binding_source: str                                
+    selection_source: str                                                              
 
 
 @dataclass(frozen=True)

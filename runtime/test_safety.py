@@ -3,6 +3,7 @@ Tests for safety block: model fields, loader normalization, and engine enforceme
 
 Run: python -m runtime.test_safety
 """
+
 from __future__ import annotations
 
 import sys
@@ -14,15 +15,12 @@ from runtime.errors import (
     SafetyTrustLevelError,
 )
 from runtime.execution_engine import ExecutionEngine, _TRUST_LEVEL_RANK
-from runtime.execution_state import create_execution_state
 from runtime.models import (
     CapabilitySpec,
-    ExecutionContext,
     ExecutionOptions,
     ExecutionRequest,
     FieldSpec,
     SkillSpec,
-    StepResult,
     StepSpec,
 )
 
@@ -126,6 +124,7 @@ class _FakeResolver:
 
 class _FakeExecutor:
     """Capability executor that returns a fixed result."""
+
     def __init__(self, result: Any = None):
         self._result = result or {"result": "done"}
 
@@ -135,6 +134,7 @@ class _FakeExecutor:
 
 class _FakeGateExecutor:
     """Capability executor with per-capability responses for gate testing."""
+
     def __init__(self, responses: dict[str, Any]):
         self._responses = responses
 
@@ -180,6 +180,7 @@ def _build_engine(
                                 
                                                                  
 
+
 def test_capability_spec_safety_field():
     print("▸ CapabilitySpec safety field")
 
@@ -196,24 +197,32 @@ def test_capability_spec_safety_field():
                                    
                                                                  
 
+
 def test_execution_options_safety_fields():
     print("▸ ExecutionOptions trust_level & confirmed_capabilities")
 
     opts = ExecutionOptions()
     _test("default trust_level is standard", opts.trust_level == "standard")
-    _test("default confirmed_capabilities is empty", opts.confirmed_capabilities == frozenset())
+    _test(
+        "default confirmed_capabilities is empty",
+        opts.confirmed_capabilities == frozenset(),
+    )
 
     opts2 = ExecutionOptions(
         trust_level="elevated",
         confirmed_capabilities=frozenset({"email.message.send"}),
     )
     _test("custom trust_level", opts2.trust_level == "elevated")
-    _test("custom confirmed_capabilities", "email.message.send" in opts2.confirmed_capabilities)
+    _test(
+        "custom confirmed_capabilities",
+        "email.message.send" in opts2.confirmed_capabilities,
+    )
 
 
                                                                  
                             
                                                                  
+
 
 def test_trust_level_rank_map():
     print("▸ Trust-level rank map")
@@ -288,6 +297,7 @@ def test_trust_level_sandbox_blocked():
                                       
                                                                  
 
+
 def test_requires_confirmation_blocked():
     print("▸ requires_confirmation blocks unconfirmed capability")
     cap = _make_cap(safety={"requires_confirmation": True})
@@ -333,18 +343,23 @@ def test_requires_confirmation_false_no_block():
                                     
                                                                  
 
+
 def test_pre_gate_block():
     print("▸ Pre-gate with on_fail=block raises SafetyGateFailedError")
     gate_cap = _make_cap(id="security.pii.detect")
-    cap = _make_cap(safety={
-        "mandatory_pre_gates": [
-            {"capability": "security.pii.detect", "on_fail": "block"},
-        ],
-    })
-    executor = _FakeGateExecutor({
-        "security.pii.detect": {"allowed": False, "reason": "PII detected"},
-        "test.cap": {"result": "done"},
-    })
+    cap = _make_cap(
+        safety={
+            "mandatory_pre_gates": [
+                {"capability": "security.pii.detect", "on_fail": "block"},
+            ],
+        }
+    )
+    executor = _FakeGateExecutor(
+        {
+            "security.pii.detect": {"allowed": False, "reason": "PII detected"},
+            "test.cap": {"result": "done"},
+        }
+    )
     engine = _build_engine(caps={cap.id: cap, gate_cap.id: gate_cap}, executor=executor)
     req = ExecutionRequest(skill_id="test.skill", inputs={"text": "hello"})
     try:
@@ -358,15 +373,19 @@ def test_pre_gate_block():
 def test_pre_gate_warn():
     print("▸ Pre-gate with on_fail=warn emits event and continues")
     gate_cap = _make_cap(id="security.pii.detect")
-    cap = _make_cap(safety={
-        "mandatory_pre_gates": [
-            {"capability": "security.pii.detect", "on_fail": "warn"},
-        ],
-    })
-    executor = _FakeGateExecutor({
-        "security.pii.detect": {"allowed": False, "reason": "PII detected"},
-        "test.cap": {"result": "done"},
-    })
+    cap = _make_cap(
+        safety={
+            "mandatory_pre_gates": [
+                {"capability": "security.pii.detect", "on_fail": "warn"},
+            ],
+        }
+    )
+    executor = _FakeGateExecutor(
+        {
+            "security.pii.detect": {"allowed": False, "reason": "PII detected"},
+            "test.cap": {"result": "done"},
+        }
+    )
     engine = _build_engine(caps={cap.id: cap, gate_cap.id: gate_cap}, executor=executor)
     req = ExecutionRequest(skill_id="test.skill", inputs={"text": "hello"})
     result = engine.execute(req)
@@ -381,18 +400,24 @@ def test_pre_gate_warn():
 def test_pre_gate_degrade():
     print("▸ Pre-gate with on_fail=degrade returns degraded step")
     gate_cap = _make_cap(id="security.pii.detect")
-    cap = _make_cap(safety={
-        "mandatory_pre_gates": [
-            {"capability": "security.pii.detect", "on_fail": "degrade"},
-        ],
-    })
-    executor = _FakeGateExecutor({
-        "security.pii.detect": {"allowed": False, "reason": "risky"},
-        "test.cap": {"result": "done"},
-    })
-    skill = _make_skill(steps=[
-        _make_step(output_mapping={"result": "vars.result"}),
-    ])
+    cap = _make_cap(
+        safety={
+            "mandatory_pre_gates": [
+                {"capability": "security.pii.detect", "on_fail": "degrade"},
+            ],
+        }
+    )
+    executor = _FakeGateExecutor(
+        {
+            "security.pii.detect": {"allowed": False, "reason": "risky"},
+            "test.cap": {"result": "done"},
+        }
+    )
+    skill = _make_skill(
+        steps=[
+            _make_step(output_mapping={"result": "vars.result"}),
+        ]
+    )
     skill_out = SkillSpec(
         id=skill.id,
         version=skill.version,
@@ -403,7 +428,9 @@ def test_pre_gate_degrade():
         steps=skill.steps,
         metadata=skill.metadata,
     )
-    engine = _build_engine(caps={cap.id: cap, gate_cap.id: gate_cap}, executor=executor, skill=skill_out)
+    engine = _build_engine(
+        caps={cap.id: cap, gate_cap.id: gate_cap}, executor=executor, skill=skill_out
+    )
     req = ExecutionRequest(skill_id="test.skill", inputs={"text": "hello"})
     result = engine.execute(req)
     _test("completes (no fail_fast on degraded)", result.status == "completed")
@@ -412,17 +439,23 @@ def test_pre_gate_degrade():
 
 
 def test_pre_gate_require_human():
-    print("▸ Pre-gate with on_fail=require_human raises SafetyConfirmationRequiredError")
+    print(
+        "▸ Pre-gate with on_fail=require_human raises SafetyConfirmationRequiredError"
+    )
     gate_cap = _make_cap(id="security.pii.detect")
-    cap = _make_cap(safety={
-        "mandatory_pre_gates": [
-            {"capability": "security.pii.detect", "on_fail": "require_human"},
-        ],
-    })
-    executor = _FakeGateExecutor({
-        "security.pii.detect": {"allowed": False, "reason": "human review needed"},
-        "test.cap": {"result": "done"},
-    })
+    cap = _make_cap(
+        safety={
+            "mandatory_pre_gates": [
+                {"capability": "security.pii.detect", "on_fail": "require_human"},
+            ],
+        }
+    )
+    executor = _FakeGateExecutor(
+        {
+            "security.pii.detect": {"allowed": False, "reason": "human review needed"},
+            "test.cap": {"result": "done"},
+        }
+    )
     engine = _build_engine(caps={cap.id: cap, gate_cap.id: gate_cap}, executor=executor)
     req = ExecutionRequest(skill_id="test.skill", inputs={"text": "hello"})
     try:
@@ -436,15 +469,19 @@ def test_pre_gate_require_human():
 def test_pre_gate_passes():
     print("▸ Pre-gate that allows continues normally")
     gate_cap = _make_cap(id="security.pii.detect")
-    cap = _make_cap(safety={
-        "mandatory_pre_gates": [
-            {"capability": "security.pii.detect", "on_fail": "block"},
-        ],
-    })
-    executor = _FakeGateExecutor({
-        "security.pii.detect": {"allowed": True},
-        "test.cap": {"result": "done"},
-    })
+    cap = _make_cap(
+        safety={
+            "mandatory_pre_gates": [
+                {"capability": "security.pii.detect", "on_fail": "block"},
+            ],
+        }
+    )
+    executor = _FakeGateExecutor(
+        {
+            "security.pii.detect": {"allowed": True},
+            "test.cap": {"result": "done"},
+        }
+    )
     engine = _build_engine(caps={cap.id: cap, gate_cap.id: gate_cap}, executor=executor)
     req = ExecutionRequest(skill_id="test.skill", inputs={"text": "hello"})
     result = engine.execute(req)
@@ -455,18 +492,23 @@ def test_pre_gate_passes():
                                      
                                                                  
 
+
 def test_post_gate_block():
     print("▸ Post-gate with on_fail=block raises after execution")
     gate_cap = _make_cap(id="security.output.scan")
-    cap = _make_cap(safety={
-        "mandatory_post_gates": [
-            {"capability": "security.output.scan", "on_fail": "block"},
-        ],
-    })
-    executor = _FakeGateExecutor({
-        "security.output.scan": {"allowed": False, "reason": "output unsafe"},
-        "test.cap": {"result": "done"},
-    })
+    cap = _make_cap(
+        safety={
+            "mandatory_post_gates": [
+                {"capability": "security.output.scan", "on_fail": "block"},
+            ],
+        }
+    )
+    executor = _FakeGateExecutor(
+        {
+            "security.output.scan": {"allowed": False, "reason": "output unsafe"},
+            "test.cap": {"result": "done"},
+        }
+    )
     engine = _build_engine(caps={cap.id: cap, gate_cap.id: gate_cap}, executor=executor)
     req = ExecutionRequest(skill_id="test.skill", inputs={"text": "hello"})
     try:
@@ -480,15 +522,19 @@ def test_post_gate_block():
 def test_post_gate_passes():
     print("▸ Post-gate that allows continues normally")
     gate_cap = _make_cap(id="security.output.scan")
-    cap = _make_cap(safety={
-        "mandatory_post_gates": [
-            {"capability": "security.output.scan", "on_fail": "block"},
-        ],
-    })
-    executor = _FakeGateExecutor({
-        "security.output.scan": {"allowed": True},
-        "test.cap": {"result": "done"},
-    })
+    cap = _make_cap(
+        safety={
+            "mandatory_post_gates": [
+                {"capability": "security.output.scan", "on_fail": "block"},
+            ],
+        }
+    )
+    executor = _FakeGateExecutor(
+        {
+            "security.output.scan": {"allowed": True},
+            "test.cap": {"result": "done"},
+        }
+    )
     engine = _build_engine(caps={cap.id: cap, gate_cap.id: gate_cap}, executor=executor)
     req = ExecutionRequest(skill_id="test.skill", inputs={"text": "hello"})
     result = engine.execute(req)
@@ -498,6 +544,7 @@ def test_post_gate_passes():
                                                                  
                              
                                                                  
+
 
 def test_no_safety_passthrough():
     print("▸ Capability without safety block executes normally")
@@ -512,12 +559,15 @@ def test_no_safety_passthrough():
                                            
                                                                  
 
+
 def test_combined_trust_and_confirmation():
     print("▸ Combined trust_level + requires_confirmation")
-    cap = _make_cap(safety={
-        "trust_level": "elevated",
-        "requires_confirmation": True,
-    })
+    cap = _make_cap(
+        safety={
+            "trust_level": "elevated",
+            "requires_confirmation": True,
+        }
+    )
     engine = _build_engine(cap=cap)
                                                      
     req1 = ExecutionRequest(
@@ -559,11 +609,14 @@ def test_combined_trust_and_confirmation():
 def test_gate_exception_treated_as_blocked():
     print("▸ Gate capability exception raises GateExecutionError")
     from runtime.errors import GateExecutionError
-    cap = _make_cap(safety={
-        "mandatory_pre_gates": [
-            {"capability": "nonexistent.gate", "on_fail": "block"},
-        ],
-    })
+
+    cap = _make_cap(
+        safety={
+            "mandatory_pre_gates": [
+                {"capability": "nonexistent.gate", "on_fail": "block"},
+            ],
+        }
+    )
     engine = _build_engine(caps={cap.id: cap})                           
     req = ExecutionRequest(skill_id="test.skill", inputs={"text": "hello"})
     try:
@@ -577,6 +630,7 @@ def test_gate_exception_treated_as_blocked():
                          
                                                                  
 
+
 def test_loader_normalize_safety():
     print("▸ Loader _normalize_safety gate normalization")
     from pathlib import Path
@@ -586,7 +640,9 @@ def test_loader_normalize_safety():
     loader.repo_root = Path(".")
 
                  
-    _test("None input → None", loader._normalize_safety(None, Path("test.yaml")) is None)
+    _test(
+        "None input → None", loader._normalize_safety(None, Path("test.yaml")) is None
+    )
 
                        
     _test("empty dict → None", loader._normalize_safety({}, Path("test.yaml")) is None)
@@ -615,6 +671,7 @@ def test_loader_normalize_safety():
                                                                  
         
                                                                  
+
 
 def main() -> None:
     print("=" * 60)

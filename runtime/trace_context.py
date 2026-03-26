@@ -13,13 +13,12 @@ Usage in OpenAPI invoker::
     # Incoming request — extract header
     ctx = extract_traceparent(request_headers.get("traceparent"))
 """
+
 from __future__ import annotations
 
-import os
 import re
 import secrets
 from dataclasses import dataclass
-from typing import Any
 
                                                             
                                                                   
@@ -33,10 +32,11 @@ _FLAG_SAMPLED = 0x01
 @dataclass(frozen=True)
 class TraceContext:
     """Parsed W3C trace context."""
-    trace_id: str                      
-    parent_id: str                     
-    trace_flags: int                  
-    tracestate: str = ""                      
+
+    trace_id: str                
+    parent_id: str                
+    trace_flags: int               
+    tracestate: str = ""                       
 
     @property
     def sampled(self) -> bool:
@@ -109,4 +109,5 @@ def trace_id_from_internal(internal_trace_id: str | None) -> str:
         return cleaned[:32].ljust(32, "0")
                                
     import hashlib
+
     return hashlib.sha256(internal_trace_id.encode()).hexdigest()[:32]

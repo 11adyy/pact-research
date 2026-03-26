@@ -130,7 +130,8 @@ def build_runtime_components(
 
                                                                
     from runtime.plugins import discover_all
-    discovered_plugins = discover_all()
+
+    discover_all()
 
     return RuntimeComponents(
         engine=engine,
