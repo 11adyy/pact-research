@@ -7,16 +7,38 @@
   "scripts": {
     "build": "tsc",
     "generate": "bash ../generate_ts.sh",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "https://example.invalid/pact-runtime"
+    "url": "https://example.invalid/pact-runtime",
+    "directory": "sdk/typescript"
   },
-  "keywords": ["agent", "skills", "ai", "sdk", "mcp"],
-  "license": "MIT",
+  "bugs": {
+    "url": "https://example.invalid/pact-runtime/issues"
+  },
+  "homepage": "https://example.invalid/pact-runtime/tree/main/sdk/typescript#readme",
+  "keywords": [
+    "agent",
+    "skills",
+    "ai",
+    "sdk",
+    "mcp",
+    "llm",
+    "capabilities",
+    "typescript"
+  ],
+  "author": "Noah Dylan Pelegrini <github@11adyy.dev>",
+  "license": "Apache-2.0",
   "engines": {
     "node": ">=18"
   },
-  "files": ["dist/", "README.md"]
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  }
 }
