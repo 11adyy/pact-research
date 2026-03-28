@@ -1,0 +1,125 @@
+                                             
+
+replicaCount: 1
+
+image:
+  repository: pact-runtime
+  pullPolicy: IfNotPresent
+  tag: ""                                
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+                                                                   
+server:
+                      
+  type: stdlib
+  port: 8080
+  workers: 4
+
+                                                                   
+auth:
+                                          
+  enabled: false
+                                                             
+  apiKeySecretName: ""
+  apiKeySecretKey: "api-key"
+                     
+  jwt:
+    enabled: false
+    secretName: ""
+    secretKey: "jwt-secret"
+    issuer: ""
+    audience: ""
+
+                                                                   
+storage:
+                                      
+  backend: memory
+  postgresql:
+    dsn: ""
+                           
+    dsnSecretName: ""
+    dsnSecretKey: "dsn"
+  redis:
+    url: ""
+    dsnSecretName: ""
+    dsnSecretKey: "url"
+
+                                                                   
+registry:
+                                                            
+  path: /app/pact-registry
+                                                
+  existingClaim: ""
+
+                                                                   
+service:
+  type: ClusterIP
+  port: 8080
+
+                                                                   
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: pact-runtime.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+                                                                   
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: "1"
+    memory: 512Mi
+
+                                                                   
+livenessProbe:
+  httpGet:
+    path: /v1/health/live
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /v1/health/ready
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+                                                                   
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+                                                                   
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+serviceAccount:
+  create: true
+  name: ""
+  annotations: {}
+
+podAnnotations: {}
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL

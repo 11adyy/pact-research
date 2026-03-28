@@ -1,0 +1,15 @@
+apiVersion: v2
+name: pact-runtime
+description: Helm chart for the pact-runtime runtime
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - agent
+  - skills
+  - ai
+  - mcp
+  - llm
+maintainers:
+  - name: Noah Dylan Pelegrini
+    email: github@11adyy.dev
