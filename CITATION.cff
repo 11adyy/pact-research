@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Please cite this software and its accompanying manuscript."
+title: "PACT Runtime"
+type: software
+license: Apache-2.0
+authors:
+  - family-names: "Pelegrini"
+    given-names: "Noah Dylan"
+    email: "github@11adyy.dev"
+abstract: >-
+  Reference runtime for Procedural Agent Composition and Traceability:
+  declarative skills, semantic capabilities, explicit state, implementation
+  bindings, execution policies and step-level traces.
+preferred-citation:
+  type: generic
+  authors:
+    - family-names: "Pelegrini"
+      given-names: "Noah Dylan"
+  title: "From Agent Instructions to Executable Procedures: The PACT Architecture"
