@@ -7,14 +7,13 @@ name = "pact-runtime"
 version = "0.1.0"
 description = "Runtime for executing reusable AI agent skills and capability bindings"
 readme = "README.md"
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
 authors = [{name = "Noah Dylan Pelegrini", email = "github@11adyy.dev"}]
 requires-python = ">=3.11"
 keywords = ["ai", "agents", "skills", "capabilities", "workflows", "llm"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
