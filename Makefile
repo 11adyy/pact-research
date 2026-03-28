@@ -1,7 +1,21 @@
-.PHONY: install test lint format check serve mcp clean help
+.PHONY: install bootstrap test lint format check serve mcp clean help
+
+REGISTRY_DIR ?= ../pact-registry
+REGISTRY_URL ?= $(PACT_RUNTIME_REGISTRY_URL)
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
+
+bootstrap: ## Clone registry + install (one-command setup)
+	@if [ ! -d "$(REGISTRY_DIR)" ]; then \
+		echo "Cloning pact-registry..."; \
+		test -n "$(REGISTRY_URL)" || { echo "Set PACT_RUNTIME_REGISTRY_URL or use the bundled pact-registry"; exit 1; }; \
+		git clone $(REGISTRY_URL) $(REGISTRY_DIR); \
+	else \
+		echo "Registry already present at $(REGISTRY_DIR)"; \
+	fi
+	python -m pip install -e ".[all,dev]"
+	@echo "\n✓ Ready — run 'make test' or 'pact-runtime doctor' to verify."
 
 install: ## Install in dev mode with all extras
 	python -m pip install -e ".[all,dev]"
