@@ -12,7 +12,6 @@ This is equivalent to ``pact-runtime mcp-serve``.
 from __future__ import annotations
 
 import argparse
-import sys
 
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
