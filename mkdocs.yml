@@ -1,5 +1,5 @@
 site_name: PACT
-site_description: Runtime for composable AI agent skills
+site_description: "Agents should execute whenever possible — runtime for composable AI agent skills"
 
 theme:
   name: material
