@@ -47,6 +47,7 @@ Use `PACT_RUNTIME_REGISTRY_ROOT` to select another local catalog. Configure `PAC
 
 ## Reference material
 
+- [PACT.md](PACT.md)
 - [docs/INSTALLATION.md](docs/INSTALLATION.md)
 - [docs/SKILL_AUTHORING.md](docs/SKILL_AUTHORING.md)
 - [docs/BINDING_GUIDE.md](docs/BINDING_GUIDE.md)
