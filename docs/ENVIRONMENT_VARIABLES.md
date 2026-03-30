@@ -25,7 +25,7 @@ All environment variables use the `PACT_RUNTIME_` prefix.
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `PACT_RUNTIME_AUTH_MODE` | `permissive` | Auth enforcement: `enforced` (reject unauthenticated), `permissive` (allow anonymous as reader), `disabled` |
+| `PACT_RUNTIME_AUTH_MODE` | `enforced` | Auth enforcement: `enforced` (reject unauthenticated — **default since v0.2.0**), `permissive` (allow anonymous as reader), `disabled` |
 | `PACT_RUNTIME_API_KEY` | _(none)_ | API key for `X-API-Key` header authentication |
 | `PACT_RUNTIME_RBAC` | _(deprecated)_ | **Deprecated** — use `PACT_RUNTIME_AUTH_MODE=enforced` instead. Setting `1`/`true`/`yes` enables enforced mode. |
 | `PACT_RUNTIME_TRUSTED_PROXIES` | _(empty)_ | Comma-separated trusted proxy CIDRs for `X-Forwarded-For` parsing |

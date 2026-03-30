@@ -20,8 +20,8 @@ server:
 
                                                                    
 auth:
-                                          
-  enabled: false
+                                                               
+  enabled: true
                                                              
   apiKeySecretName: ""
   apiKeySecretKey: "api-key"
