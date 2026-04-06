@@ -106,3 +106,13 @@ PACT shifts agent design:
 
 From prompt-driven → to execution-driven systems.
 
+---
+
+## 📄 Research Paper
+
+The formal foundations of PACT are described in:
+
+> Pelegrini, N. D. (2026). *From Agent Instructions to Executable Procedures: The PACT Architecture*. Zenodo. [docs/PAPER.md](docs/PAPER.md)
+
+📥 [Download PDF](docs/papers/pact_paper_final_clean_v2.pdf) · 📖 [Full paper page](docs/PAPER.md)
+
