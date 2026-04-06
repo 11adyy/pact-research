@@ -1,0 +1,83 @@
+============================================================
+PACT Benchmark: Prompt vs Structured Execution
+Timestamp: 20260331T182742Z
+Model: gpt-4o-mini  |  Seed: 42
+============================================================
+
+[1/5] Building PACT runtime engine...
+      Engine ready.
+
+[2/5] Running Task 1: Structured Decision-Making...
+python : {"ts":"2026-03-31T18:27:48Z","event":"skill.execute.start","trace_id":
+"bench-experiment.structured-decision-d0283b6f","correlation_id":null,"skill_id
+":"experiment.structured-decision","depth":0,"lineage":["experiment.structured-
+decision"]}
+En línea: 1 Carácter: 1
++ python experiments/run_benchmark.py *> experiments\outputs\run_log.tx ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ({"ts":"2026-03-...red-decision"]} 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+{"ts":"2026-03-31T18:27:49Z","event":"step.execute.start","trace_id":"bench-exp
+eriment.structured-decision-d0283b6f","correlation_id":null,"skill_id":"experim
+ent.structured-decision","step_id":"generate_options","uses":"agent.option.gene
+rate"}
+{"ts":"2026-03-31T18:27:49Z","event":"capability.execute.start","trace_id":"ben
+ch-experiment.structured-decision-d0283b6f","correlation_id":null,"capability_i
+d":"agent.option.generate","input_keys":["constraints","goal"],"required_confor
+mance_profile":null}
+{"ts":"2026-03-31T18:27:59Z","event":"capability.execute.completed","trace_id":
+"bench-experiment.structured-decision-d0283b6f","correlation_id":null,"capabili
+ty_id":"agent.option.generate","duration_ms":10051.667,"output_keys":["generati
+on_notes","options"],"binding_id":"openapi_agent_option_generate_openai_chat","
+service_id":"model_openai_chat","conformance_profile":"standard"}
+{"ts":"2026-03-31T18:27:59Z","event":"step.execute.failed","trace_id":"bench-ex
+periment.structured-decision-d0283b6f","correlation_id":null,"skill_id":"experi
+ment.structured-decision","step_id":"generate_options","uses":"agent.option.gen
+erate","duration_ms":10059.741,"error_type":"OutputMappingError","error_message
+":"Produced field 'options_detail' not found in step output."}
+{"ts":"2026-03-31T18:27:59Z","event":"skill.execute.failed","trace_id":"bench-e
+xperiment.structured-decision-d0283b6f","correlation_id":null,"skill_id":"exper
+iment.structured-decision","failed_step_id":"generate_options","duration_ms":11
+030.242,"reason":"Produced field 'options_detail' not found in step output."}
+{"ts":"2026-03-31T18:27:59Z","event":"skill.execute.failed","trace_id":"bench-e
+xperiment.structured-decision-d0283b6f","correlation_id":null,"skill_id":"exper
+iment.structured-decision","depth":0,"duration_ms":11030.553,"error_type":"Step
+ExecutionError","error_message":"Step 'generate_options' failed: Produced 
+field 'options_detail' not found in step output. 
+[skill=experiment.structured-decision, step=generate_options]"}
+      [1/10] Input d01 ù prompt... OK (5.904s) | pact... FAIL (Step 'generate_options' failed: Produced field 'options_detail' not found in step output. [skill=experiment.structured-decision, step=generate_options])
+{"ts":"2026-03-31T18:28:08Z","event":"skill.execute.start","trace_id":"bench-ex
+periment.structured-decision-b7267318","correlation_id":null,"skill_id":"experi
+ment.structured-decision","depth":0,"lineage":["experiment.structured-decision"
+]}
+{"ts":"2026-03-31T18:28:08Z","event":"step.execute.start","trace_id":"bench-exp
+eriment.structured-decision-b7267318","correlation_id":null,"skill_id":"experim
+ent.structured-decision","step_id":"generate_options","uses":"agent.option.gene
+rate"}
+{"ts":"2026-03-31T18:28:08Z","event":"capability.execute.start","trace_id":"ben
+ch-experiment.structured-decision-b7267318","correlation_id":null,"capability_i
+d":"agent.option.generate","input_keys":["constraints","goal"],"required_confor
+mance_profile":null}
+{"ts":"2026-03-31T18:28:20Z","event":"capability.execute.completed","trace_id":
+"bench-experiment.structured-decision-b7267318","correlation_id":null,"capabili
+ty_id":"agent.option.generate","duration_ms":11691.266,"output_keys":["generati
+on_notes","options"],"binding_id":"openapi_agent_option_generate_openai_chat","
+service_id":"model_openai_chat","conformance_profile":"standard"}
+{"ts":"2026-03-31T18:28:20Z","event":"step.execute.failed","trace_id":"bench-ex
+periment.structured-decision-b7267318","correlation_id":null,"skill_id":"experi
+ment.structured-decision","step_id":"generate_options","uses":"agent.option.gen
+erate","duration_ms":11754.854,"error_type":"OutputMappingError","error_message
+":"Produced field 'options_detail' not found in step output."}
+{"ts":"2026-03-31T18:28:20Z","event":"skill.execute.failed","trace_id":"bench-e
+xperiment.structured-decision-b7267318","correlation_id":null,"skill_id":"exper
+iment.structured-decision","failed_step_id":"generate_options","duration_ms":11
+929.04,"reason":"Produced field 'options_detail' not found in step output."}
+{"ts":"2026-03-31T18:28:20Z","event":"skill.execute.failed","trace_id":"bench-e
+xperiment.structured-decision-b7267318","correlation_id":null,"skill_id":"exper
+iment.structured-decision","depth":0,"duration_ms":11929.295,"error_type":"Step
+ExecutionError","error_message":"Step 'generate_options' failed: Produced 
+field 'options_detail' not found in step output. 
+[skill=experiment.structured-decision, step=generate_options]"}
+      [2/10] Input d02 ù prompt... OK (8.192s) | pact... FAIL (Step 'generate_options' failed: Produced field 'options_detail' not found in step output. [skill=experiment.structured-decision, step=generate_options])
