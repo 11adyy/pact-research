@@ -1,0 +1,13 @@
+# Default owner
+* @11adyy
+
+# Runtime core
+runtime/ @11adyy
+gateway/ @11adyy
+
+# SDK and adapters
+sdk/ @11adyy
+official_mcp_servers/ @11adyy
+
+# Registry governance
+policies/ @11adyy
