@@ -39,8 +39,8 @@ from pathlib import Path
                                                                              
        
                                                                              
-REPO_ROOT = Path(__file__).resolve().parent.parent.parent                  
-REGISTRY_ROOT = REPO_ROOT.parent / "pact-registry"                 
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent                 
+REGISTRY_ROOT = REPO_ROOT.parent / "pact-registry"                
 CASE_DIR = REPO_ROOT / "experiments" / "change_approval_gate"
 FIXTURES_DIR = CASE_DIR / "fixtures"
 POLICIES_DIR = CASE_DIR / "policies"
@@ -113,6 +113,7 @@ def _llm_call(messages: list[dict], temperature: float = 0.2) -> dict:
 def _build_pact_engine():
     """Build the PACT runtime engine."""
     import logging
+
     logging.getLogger("runtime").setLevel(logging.WARNING)
     from runtime.engine_factory import build_runtime_components
 
@@ -272,7 +273,9 @@ def _print_comparison_table(rows: list[dict]) -> None:
     p_correct = sum(1 for r in rows if r["prompt_decision"] == r["expected"])
     o_correct = sum(1 for r in rows if r["pact_decision"] == r["expected"])
     print("-" * 100)
-    print(f"{'TOTAL':<40} {'':14} {'':10} {'':10} {'':10} {p_correct}/{total}  {o_correct}/{total}")
+    print(
+        f"{'TOTAL':<40} {'':14} {'':10} {'':10} {'':10} {p_correct}/{total}  {o_correct}/{total}"
+    )
     print()
 
 
@@ -297,17 +300,38 @@ def run_all(engine) -> None:
 
             try:
                 pr = run_prompt(fixture, policy)
-                pr_decision = pr["output"].get("decision", "error") if isinstance(pr["output"], dict) else "error"
+                pr_decision = (
+                    pr["output"].get("decision", "error")
+                    if isinstance(pr["output"], dict)
+                    else "error"
+                )
             except Exception as e:
                 pr_decision = f"error: {e}"
-                pr = {"output": {}, "latency_s": 0, "total_tokens": 0, "traceable": False, "step_trace": []}
+                pr = {
+                    "output": {},
+                    "latency_s": 0,
+                    "total_tokens": 0,
+                    "traceable": False,
+                    "step_trace": [],
+                }
 
             try:
                 or_ = run_pact(engine, fixture, policy)
-                or_decision = or_["output"].get("decision", "error") if isinstance(or_["output"], dict) else "error"
+                or_decision = (
+                    or_["output"].get("decision", "error")
+                    if isinstance(or_["output"], dict)
+                    else "error"
+                )
             except Exception as e:
                 or_decision = f"error: {e}"
-                or_ = {"output": {}, "latency_s": 0, "total_tokens": 0, "traceable": False, "step_trace": [], "status": "error"}
+                or_ = {
+                    "output": {},
+                    "latency_s": 0,
+                    "total_tokens": 0,
+                    "traceable": False,
+                    "step_trace": [],
+                    "status": "error",
+                }
 
             print(f" prompt={pr_decision} pact={or_decision}")
             rows.append(
