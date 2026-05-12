@@ -14,6 +14,32 @@ _ENV_SERVICE_PREFERENCES: list[tuple[str, str]] = [
     ("OPENAI_API_KEY", "openai"),
 ]
 
+                                                                            
+                                                                          
+                                                                             
+_PYTHON_PREFERRED_CAPABILITIES: set[str] = {
+    "agent.request.normalize",
+    "agent.goal.interpret",
+    "agent.criteria.define",
+    "agent.flow.branch",
+    "agent.flow.catch",
+                                                                                 
+                                                                                      
+    "agent.catalog.search",
+    "agent.catalog.rank",
+    "agent.catalog.detect",
+    "agent.task.plan",
+    "agent.plan.map",
+    "agent.plan.split",
+    "agent.plan.reconcile",
+    "agent.plan.validate",
+    "agent.plan.synthesize",
+    "agent.plan.gate",
+    "eval.output.validate",
+    "agent.output.synthesize",
+    "ops.trace.summarize",
+}
+
 
 class BindingResolutionError(RuntimeErrorBase):
     """Raised when no valid binding can be resolved for a capability."""
@@ -153,6 +179,11 @@ class BindingResolver:
 
         if len(official) <= 1:
             return None
+
+        if capability_id in _PYTHON_PREFERRED_CAPABILITIES:
+            pythoncall = [b for b in official if b.protocol == "pythoncall"]
+            if pythoncall:
+                return pythoncall[0].id
 
                                                          
         for env_var, service_substr in _ENV_SERVICE_PREFERENCES:
