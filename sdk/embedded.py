@@ -177,12 +177,22 @@ def _build_skill_execution_meta(result) -> dict[str, Any]:
             fallback_steps.append(diagnostic)
 
     steps_count = len(step_diagnostics)
-                                                                         
-                                                                         
-                                                                             
-                                                                                
-    result_level_fallback = bool(getattr(result, "fallback_used", None))
-    derived_fallback_used = bool(fallback_steps) or result_level_fallback
+                                                                                 
+                                                                            
+                                                                                  
+    result_level_fallback_raw = getattr(result, "fallback_used", None)
+    result_level_fallback: bool | None
+    if isinstance(result_level_fallback_raw, bool):
+        result_level_fallback = result_level_fallback_raw
+    else:
+        result_level_fallback = None
+
+    if fallback_steps:
+        derived_fallback_used: bool | None = True
+    elif result_level_fallback is not None:
+        derived_fallback_used = result_level_fallback
+    else:
+        derived_fallback_used = None
                                                                     
     affected_steps_count = sum(
         1
@@ -193,8 +203,8 @@ def _build_skill_execution_meta(result) -> dict[str, Any]:
             or step.get("status") in {"failed", "degraded", "skipped"}
         )
     )
-    derived_fallback_count = max(len(fallback_steps), affected_steps_count)
-    if result_level_fallback and not fallback_steps:
+    derived_fallback_count: int | None = max(len(fallback_steps), affected_steps_count)
+    if result_level_fallback is True and not fallback_steps:
                                                                              
                                                                   
         derived_fallback_count = 1                                     
@@ -206,12 +216,10 @@ def _build_skill_execution_meta(result) -> dict[str, Any]:
         execution_warnings.append(
             "No step diagnostics were captured; execution trace is not fully auditable."
         )
-                                                                                              
-                                                                     
-        if not derived_fallback_used:
-            derived_fallback_used = True
-        if derived_fallback_count < 1:
-            derived_fallback_count = 1
+                                                                               
+                                         
+        if derived_fallback_used is None:
+            derived_fallback_count = None
     else:
         trace_completeness = "full"
         if failed_steps_count > 0:
@@ -220,7 +228,9 @@ def _build_skill_execution_meta(result) -> dict[str, Any]:
                 "One or more steps failed/degraded; trace is partial."
             )
 
-    if derived_fallback_used and derived_fallback_count < 1:
+    if derived_fallback_used is True and (
+        not isinstance(derived_fallback_count, int) or derived_fallback_count < 1
+    ):
         derived_fallback_count = 1
 
     retries_used = sum(
