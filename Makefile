@@ -1,4 +1,4 @@
-.PHONY: install bootstrap test lint format check guardrails-openapi-runtime cognitive-quality-gates legacy-bindings-report serve mcp clean help
+.PHONY: install bootstrap test lint format check guardrails-openapi-runtime cognitive-quality-gates legacy-bindings-report pre-push-full serve mcp clean help
 
 REGISTRY_DIR ?= ../pact-registry
 REGISTRY_URL ?= $(PACT_RUNTIME_REGISTRY_URL)
@@ -41,6 +41,9 @@ cognitive-quality-gates: ## Run CI-equivalent cognitive quality gates locally
 
 legacy-bindings-report: ## Generate report for archived legacy bindings
 	python tooling/report_legacy_bindings.py
+
+pre-push-full: ## Run consolidated pre-push quality + customer-facing + legacy checks
+	python tooling/run_pre_push_full.py
 
 serve: ## Start HTTP server (localhost:8080)
 	python -m cli.main serve
