@@ -207,6 +207,22 @@ class TestPhase11:
     def test_grafana_dashboard_exists(self):
         assert (_ROOT / "docs" / "grafana" / "pact_runtime_dashboard.json").exists()
 
+    def test_grafana_dashboard_has_idempotency_panels(self):
+        dashboard = (_ROOT / "docs" / "grafana" / "pact_runtime_dashboard.json").read_text(
+            encoding="utf-8"
+        )
+        assert "pact_runtime_runtime_idempotency_created_total" in dashboard
+        assert "pact_runtime_runtime_idempotency_reused_total" in dashboard
+        assert "pact_runtime_runtime_idempotency_conflict_total" in dashboard
+        assert "pact_runtime_runtime_idempotency_expired_total" in dashboard
+
+    def test_grafana_idempotency_alert_rules_exist(self):
+        rules = (_ROOT / "docs" / "grafana" / "pact_runtime_idempotency_alerts.yaml")
+        assert rules.exists()
+        content = rules.read_text(encoding="utf-8")
+        assert "pact_runtime_runtime_idempotency_conflict_total" in content
+        assert "pact_runtime_runtime_idempotency_expired_total" in content
+
 
                                                                              
                                                                         
