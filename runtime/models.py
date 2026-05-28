@@ -273,6 +273,8 @@ class ExecutionOptions:
     trust_level: str = "standard"
                                                                                         
     confirmed_capabilities: frozenset[str] = field(default_factory=frozenset)
+                                                          
+    tenant_id: str | None = None
                                                                         
                                                                              
     max_lineage_timeout_seconds: float | None = None
