@@ -203,6 +203,25 @@ def main() -> int:
             }
         )
 
+                                                                                
+                                                                                
+                                                                            
+    nodes.append(
+        _node(
+            "job.release_readiness_gate",
+            "job",
+            "active",
+            {"result": "self"},
+        )
+    )
+    edges.append(
+        _edge(
+            "source.workflow.smoke_verification",
+            "job.release_readiness_gate",
+            "triggers",
+        )
+    )
+
     for key, path in artifacts.items():
         payload, error = _load_json(path)
         present = error is None
