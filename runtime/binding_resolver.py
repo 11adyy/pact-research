@@ -177,6 +177,11 @@ class BindingResolver:
         bindings = self.binding_registry.get_bindings_for_capability(capability_id)
         official = [b for b in bindings if b.source == "official"]
 
+                                                                    
+                                                                                
+        if len(official) == 1:
+            return official[0].id
+
         if len(official) <= 1:
             return None
 

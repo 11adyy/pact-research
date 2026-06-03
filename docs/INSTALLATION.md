@@ -8,7 +8,7 @@
 ## Quick Install
 
 ```bash
-# 1. Clone both repositories side by side
+# 1. Clone both repositories side by side (required)
 git clone https://example.invalid/pact-runtime.git
 git clone https://example.invalid/pact-registry.git
 
@@ -25,10 +25,23 @@ That's it. The `pact-runtime` CLI is now available.
 # Check CLI
 pact-runtime --help
 
-# Run health check (uses Python baselines, no API key needed)
-pact-runtime run text.detect-language-and-classify \
-  --input '{"text": "Hello world"}'
+# Validate local setup first
+pact-runtime doctor
+
+# Run first skill (uses Python baselines, no API key needed)
+echo '{"text":"PACT turns agent reasoning into reusable executable skills."}' > input_qs.json
+pact-runtime run text.language-summary --input-file input_qs.json
+rm input_qs.json
 ```
+
+If `pact-runtime` is not available on your PATH, run the same commands via:
+
+```bash
+python -m cli.main doctor
+python -m cli.main run text.language-summary --input-file input_qs.json
+```
+
+On Windows PowerShell, this module form is the most reliable in a fresh shell.
 
 ## Optional: LLM Provider
 

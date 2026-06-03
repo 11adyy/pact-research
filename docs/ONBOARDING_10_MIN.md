@@ -118,20 +118,20 @@ Note on counts:
 
 Basic run:
 
-- python cli/main.py run <skill_id>
+- pact-runtime run <skill_id>
 
 With inline input:
 
-- python cli/main.py run <skill_id> --input "{\"key\":\"value\"}"
+- pact-runtime run <skill_id> --input "{\"key\":\"value\"}"
 
 With input file:
 
-- python cli/main.py run <skill_id> --input-file input.json
+- pact-runtime run <skill_id> --input-file input.json
 
 With trace correlation:
 
-- python cli/main.py run <skill_id> --trace-id onboarding-001
-- python cli/main.py trace <skill_id> --trace-id onboarding-001
+- pact-runtime run <skill_id> --trace-id onboarding-001
+- pact-runtime trace <skill_id> --trace-id onboarding-001
 
 Use trace_id to correlate runtime and service logs.
 
