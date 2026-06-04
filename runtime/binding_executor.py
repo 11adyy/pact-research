@@ -179,6 +179,8 @@ class BindingExecutor:
                 mapped_output = self.response_mapper.map(
                     binding=binding,
                     invocation_response=response,
+                    step_input=step_input,
+                    request_payload=payload,
                 )
 
                 attempts.append(
@@ -278,6 +280,7 @@ class BindingExecutor:
         chain = self._build_fallback_chain(
             capability_id=capability_id,
             primary_binding_id=resolved.binding_id,
+            selection_source=resolved.selection_source,
         )
 
         plan_items: list[dict[str, Any]] = []
@@ -320,7 +323,11 @@ class BindingExecutor:
         return plan
 
     def _build_fallback_chain(
-        self, *, capability_id: str, primary_binding_id: str
+        self,
+        *,
+        capability_id: str,
+        primary_binding_id: str,
+        selection_source: str,
     ) -> list[str]:
         """
         Build deterministic fallback chain:
@@ -350,15 +357,20 @@ class BindingExecutor:
                 break
             current_id = raw_next
 
-        default_binding_id = self.binding_registry.get_official_default_binding_id(
-            capability_id
-        )
-        if (
-            isinstance(default_binding_id, str)
-            and default_binding_id
-            and default_binding_id not in visited
-        ):
-            chain.append(default_binding_id)
+                                                                             
+                                                                               
+                                                                             
+                                                
+        if selection_source == "local_selection":
+            default_binding_id = self.binding_registry.get_official_default_binding_id(
+                capability_id
+            )
+            if (
+                isinstance(default_binding_id, str)
+                and default_binding_id
+                and default_binding_id not in visited
+            ):
+                chain.append(default_binding_id)
 
         return chain
 
