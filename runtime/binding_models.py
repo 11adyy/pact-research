@@ -46,7 +46,7 @@ class BindingSpec:
     protocol: str
     operation_id: str
     request_template: dict[str, Any]
-    response_mapping: dict[str, str]
+    response_mapping: dict[str, str | list[str]]
     metadata: dict[str, Any] = field(default_factory=dict)
     source: str = "official"                                
     source_file: str | None = None
