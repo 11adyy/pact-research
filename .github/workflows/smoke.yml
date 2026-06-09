@@ -23,7 +23,7 @@ permissions:
 env:
                                                                 
                                                                                     
-  REGISTRY_REF: e6a181e
+  REGISTRY_REF: ${{ vars.PACT_REGISTRY_REF || \'main\' }}
                                                                              
   MAX_PIN_DRIFT_COMMITS: 25
 

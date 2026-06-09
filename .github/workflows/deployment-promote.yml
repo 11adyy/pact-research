@@ -27,7 +27,7 @@ permissions:
   actions: read
 
 env:
-  REGISTRY_REF: e6a181e
+  REGISTRY_REF: ${{ vars.PACT_REGISTRY_REF || \'main\' }}
 
 jobs:
   promote_bundle:

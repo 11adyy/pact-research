@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 env:
-  REGISTRY_REF: e6a181e
+  REGISTRY_REF: ${{ vars.PACT_REGISTRY_REF || \'main\' }}
 
 jobs:
   preview_bundle:
