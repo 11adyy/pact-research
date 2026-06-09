@@ -101,21 +101,34 @@ def _collect_governance_capabilities(registry_root: Path) -> list[dict]:
 
 
 def _recommended_next_cohort(entries: list[dict]) -> list[str]:
-                                                                                 
-                                                                                    
-    prioritized_prefixes = (
-        "identity.permission.",
+                                                        
+                                              
+                                         
+                                                         
+                                              
+    priority_order = [
+        "identity.permission.gate",
+        "identity.permission.get",
+        "identity.permission.list",
+        "identity.permission.verify",
         "identity.role.get",
         "identity.role.list",
-    )
-    candidates = [
+        "policy.constraint.validate",
+        "policy.decision.evaluate",
+        "policy.record.classify",
+        "policy.risk.score",
+        "policy.constraint.gate",
+        "policy.decision.justify",
+        "policy.risk.classify",
+        "security.secret.detect",
+        "provenance.citation.generate",
+    ]
+    remaining = {
         item["id"]
         for item in entries
-        if not item["same_tenant"]
-        and isinstance(item["id"], str)
-        and item["id"].startswith(prioritized_prefixes)
-    ]
-    return sorted(candidates)
+        if isinstance(item.get("id"), str) and not item.get("same_tenant")
+    }
+    return [capability_id for capability_id in priority_order if capability_id in remaining]
 
 
 def main() -> int:
