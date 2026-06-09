@@ -14,13 +14,19 @@ Run:
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Any, Dict
 
 import pytest
 import yaml
 
-REGISTRY_ROOT = Path(__file__).resolve().parent.parent / "pact-registry"
+REGISTRY_ROOT = Path(
+    os.getenv(
+        "REGISTRY_ROOT",
+        str(Path(__file__).resolve().parent.parent / "pact-registry"),
+    )
+)
 CAPABILITIES_DIR = REGISTRY_ROOT / "capabilities"
 
 
