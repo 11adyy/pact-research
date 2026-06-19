@@ -89,7 +89,8 @@ Auth mode is `enforced` but no API key is provided.
 
 Default: 60 requests per 60-second window per client IP.
 
-- Increase via `PACT_RUNTIME_RATE_LIMIT` and `PACT_RUNTIME_RATE_WINDOW`.
+- For the built-in HTTP server started with `pact-runtime serve`, limits are currently fixed at the defaults above.
+- To customize limits, start the server programmatically and pass a custom `ServerConfig(rate_limit_requests=..., rate_limit_window_seconds=...)` to `run_server(...)`.
 - Behind a proxy? Set `PACT_RUNTIME_TRUSTED_PROXIES` so the real client IP is used.
 
 ---
