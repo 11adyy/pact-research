@@ -12,5 +12,4 @@ response:
 metadata:
   description: Python fallback for perception.case.search using task case search baseline.
   status: stable
-
-
+  fallback_binding_id: python_task_case_search
