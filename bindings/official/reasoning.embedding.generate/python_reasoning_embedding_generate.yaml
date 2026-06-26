@@ -13,3 +13,5 @@ response:
 metadata:
   description: Python fallback for reasoning.embedding.generate using cognitive_baseline service.
   status: stable
+
+

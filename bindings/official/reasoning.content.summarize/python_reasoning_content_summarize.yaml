@@ -11,3 +11,5 @@ response:
 metadata:
   description: Python fallback for reasoning.content.summarize using cognitive_baseline service.
   status: stable
+
+

@@ -31,3 +31,5 @@ metadata:
   description: OpenAI binding for evidence.trace.analyze using gpt-4o-mini.
   status: experimental
   timeout_seconds: 30
+
+

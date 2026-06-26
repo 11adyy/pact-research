@@ -12,5 +12,5 @@ response:
   repair_notes: response.repair_notes
   still_invalid: response.still_invalid
 metadata:
-  description: Python fallback for reasoning.plan.reconcile using cognitive_baseline service.
+  description: Python fallback for agent.plan.reconcile using cognitive_baseline service.
   status: stable

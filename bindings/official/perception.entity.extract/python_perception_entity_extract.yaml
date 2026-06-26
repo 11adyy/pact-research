@@ -10,3 +10,5 @@ response:
 metadata:
   description: Python fallback for perception.entity.extract using cognitive_baseline service.
   status: stable
+
+
