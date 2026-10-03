@@ -1,0 +1,98 @@
+[
+  {
+    "name": "service_exception",
+    "fault": "exception",
+    "fault_op": "solve",
+    "expect": "contain"
+  },
+  {
+    "name": "missing_output",
+    "fault": "missing_output",
+    "fault_op": "solve",
+    "expect": "contain"
+  },
+  {
+    "name": "wrong_intermediate_type",
+    "fault": "wrong_type",
+    "fault_op": "verify",
+    "expect": "contain"
+  },
+  {
+    "name": "null_intermediate",
+    "fault": "null_output",
+    "fault_op": "verify",
+    "expect": "contain"
+  },
+  {
+    "name": "negative_semantic_result",
+    "fault": "semantic_negative",
+    "fault_op": "solve",
+    "expect": "contain"
+  },
+  {
+    "name": "plausible_wrong_result",
+    "fault": "semantic_positive",
+    "fault_op": "solve",
+    "expect": "contain"
+  },
+  {
+    "name": "terminal_output_type",
+    "fault": "terminal_wrong_type",
+    "fault_op": "commit",
+    "expect": "reject"
+  },
+  {
+    "name": "low_trust",
+    "trust": "sandbox",
+    "expect": "contain"
+  },
+  {
+    "name": "unconfirmed_effect",
+    "confirmed": false,
+    "expect": "contain"
+  },
+  {
+    "name": "cross_tenant",
+    "target_tenant_id": "tenant-b",
+    "expect": "contain"
+  },
+  {
+    "name": "missing_tenant",
+    "tenant": null,
+    "expect": "contain"
+  },
+  {
+    "name": "missing_target_tenant",
+    "target_tenant_id": null,
+    "expect": "contain"
+  },
+  {
+    "name": "transient_recovered",
+    "fault": "transient",
+    "fault_op": "solve",
+    "skill": "evaluation.retry",
+    "expect": "recover"
+  },
+  {
+    "name": "transient_no_retry",
+    "fault": "transient",
+    "fault_op": "solve",
+    "expect": "contain"
+  },
+  {
+    "name": "step_timeout",
+    "fault": "slow",
+    "fault_op": "solve",
+    "fault_delay_ms": 30,
+    "skill": "evaluation.timeout",
+    "expect": "contain"
+  },
+  {
+    "name": "late_effect_after_timeout",
+    "fault": "slow",
+    "fault_op": "commit",
+    "fault_delay_ms": 30,
+    "skill": "evaluation.effect_timeout",
+    "expect": "contain"
+  }
+]

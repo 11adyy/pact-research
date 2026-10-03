@@ -1,0 +1,33 @@
+..F...............................................................       [100%]
+=================================== FAILURES ===================================
+_______ test_local_selection_keeps_terminal_official_default_safety_net ________
+
+    def test_local_selection_keeps_terminal_official_default_safety_net() -> None:
+        previous = os.environ.pop("OPENAI_API_KEY", None)
+        try:
+            repo_root = Path(__file__).resolve().parent.parent
+            with TemporaryDirectory(prefix="pact-runtime-host-") as tmp:
+                host_root = Path(tmp)
+                agent_dir = host_root / ".pact-runtime"
+                agent_dir.mkdir(parents=True, exist_ok=True)
+                (agent_dir / "active_bindings.json").write_text(
+                    json.dumps(
+                        {"decision.input.route": "python_decision_input_route"}, indent=2
+                    ),
+                    encoding="utf-8",
+                )
+    
+                executor, loader = _make_executor(repo_root, host_root)
+                capability = loader.get_capability("decision.input.route")
+                plan = executor.build_resolution_plan(capability=capability)
+                chain = [item["binding_id"] for item in plan["chain"]]
+    
+                assert plan["selection_source"] == "local_selection"
+                assert chain[0] == "python_decision_input_route"
+>               assert "openapi_decision_input_route_openai_chat" in chain
+E               AssertionError: assert 'openapi_decision_input_route_openai_chat' in ['python_decision_input_route']
+
+runtime/test_binding_resolution_matrix.py:102: AssertionError
+=========================== short test summary info ============================
+FAILED runtime/test_binding_resolution_matrix.py::test_local_selection_keeps_terminal_official_default_safety_net
+1 failed, 65 passed in 5.30s

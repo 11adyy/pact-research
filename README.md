@@ -56,3 +56,11 @@ Use `PACT_RUNTIME_REGISTRY_ROOT` to select another local catalog. Configure `PAC
 - [docs/CI_AND_TESTING.md](docs/CI_AND_TESTING.md)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [LICENSE](LICENSE)
+
+## Paper and reproducible evaluation
+
+The expanded architecture paper and editable sources are in [paper/](paper/).
+The [evaluation suite](experiments/pact_evaluation/README.md) includes 23,382
+recorded offline executions, baselines, fault/policy probes, ablations, graph
+scaling and raw evidence. Additional author-reported LLM aggregates are explicitly
+unverified and kept separate from the measured results.

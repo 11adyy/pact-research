@@ -1,0 +1,71 @@
+id: evaluation.chain8
+version: 1.0.0
+name: evaluation.chain8
+description: Evaluation fixture
+inputs:
+  data:
+    type: object
+    required: true
+  target_tenant_id:
+    type: string
+outputs:
+  result:
+    type: object
+    required: true
+steps:
+- id: s0
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.s0
+  config: {}
+- id: s1
+  uses: eval.identity.run
+  input:
+    data: vars.s0
+  output:
+    data: vars.s1
+  config: {}
+- id: s2
+  uses: eval.identity.run
+  input:
+    data: vars.s1
+  output:
+    data: vars.s2
+  config: {}
+- id: s3
+  uses: eval.identity.run
+  input:
+    data: vars.s2
+  output:
+    data: vars.s3
+  config: {}
+- id: s4
+  uses: eval.identity.run
+  input:
+    data: vars.s3
+  output:
+    data: vars.s4
+  config: {}
+- id: s5
+  uses: eval.identity.run
+  input:
+    data: vars.s4
+  output:
+    data: vars.s5
+  config: {}
+- id: s6
+  uses: eval.identity.run
+  input:
+    data: vars.s5
+  output:
+    data: vars.s6
+  config: {}
+- id: s7
+  uses: eval.identity.run
+  input:
+    data: vars.s6
+  output:
+    data: outputs.result
+  config: {}

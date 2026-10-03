@@ -1,0 +1,45 @@
+id: evaluation.timeout
+version: 1.0.0
+name: evaluation.timeout
+description: Evaluation fixture
+inputs:
+  data:
+    type: object
+    required: true
+  target_tenant_id:
+    type: string
+outputs:
+  result:
+    type: object
+    required: true
+steps:
+- id: s0
+  uses: eval.normalize.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.s0
+  config: {}
+- id: s1
+  uses: eval.solve.run
+  input:
+    data: vars.s0
+  output:
+    data: vars.s1
+  config:
+    timeout_seconds: 0.005
+- id: s2
+  uses: eval.verify.run
+  input:
+    data: vars.s1
+  output:
+    data: vars.s2
+  config: {}
+- id: s3
+  uses: eval.commit.run
+  input:
+    data: vars.s2
+    target_tenant_id: inputs.target_tenant_id
+  output:
+    data: outputs.result
+  config: {}

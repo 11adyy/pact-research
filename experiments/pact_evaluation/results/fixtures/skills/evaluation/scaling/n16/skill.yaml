@@ -1,0 +1,127 @@
+id: evaluation.chain16
+version: 1.0.0
+name: evaluation.chain16
+description: Evaluation fixture
+inputs:
+  data:
+    type: object
+    required: true
+  target_tenant_id:
+    type: string
+outputs:
+  result:
+    type: object
+    required: true
+steps:
+- id: s0
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.s0
+  config: {}
+- id: s1
+  uses: eval.identity.run
+  input:
+    data: vars.s0
+  output:
+    data: vars.s1
+  config: {}
+- id: s2
+  uses: eval.identity.run
+  input:
+    data: vars.s1
+  output:
+    data: vars.s2
+  config: {}
+- id: s3
+  uses: eval.identity.run
+  input:
+    data: vars.s2
+  output:
+    data: vars.s3
+  config: {}
+- id: s4
+  uses: eval.identity.run
+  input:
+    data: vars.s3
+  output:
+    data: vars.s4
+  config: {}
+- id: s5
+  uses: eval.identity.run
+  input:
+    data: vars.s4
+  output:
+    data: vars.s5
+  config: {}
+- id: s6
+  uses: eval.identity.run
+  input:
+    data: vars.s5
+  output:
+    data: vars.s6
+  config: {}
+- id: s7
+  uses: eval.identity.run
+  input:
+    data: vars.s6
+  output:
+    data: vars.s7
+  config: {}
+- id: s8
+  uses: eval.identity.run
+  input:
+    data: vars.s7
+  output:
+    data: vars.s8
+  config: {}
+- id: s9
+  uses: eval.identity.run
+  input:
+    data: vars.s8
+  output:
+    data: vars.s9
+  config: {}
+- id: s10
+  uses: eval.identity.run
+  input:
+    data: vars.s9
+  output:
+    data: vars.s10
+  config: {}
+- id: s11
+  uses: eval.identity.run
+  input:
+    data: vars.s10
+  output:
+    data: vars.s11
+  config: {}
+- id: s12
+  uses: eval.identity.run
+  input:
+    data: vars.s11
+  output:
+    data: vars.s12
+  config: {}
+- id: s13
+  uses: eval.identity.run
+  input:
+    data: vars.s12
+  output:
+    data: vars.s13
+  config: {}
+- id: s14
+  uses: eval.identity.run
+  input:
+    data: vars.s13
+  output:
+    data: vars.s14
+  config: {}
+- id: s15
+  uses: eval.identity.run
+  input:
+    data: vars.s14
+  output:
+    data: outputs.result
+  config: {}

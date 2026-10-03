@@ -1,0 +1,22 @@
+id: evaluation.chain1
+version: 1.0.0
+name: evaluation.chain1
+description: Evaluation fixture
+inputs:
+  data:
+    type: object
+    required: true
+  target_tenant_id:
+    type: string
+outputs:
+  result:
+    type: object
+    required: true
+steps:
+- id: s0
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: outputs.result
+  config: {}

@@ -1,0 +1,41 @@
+healthy: 0/9600
+healthy: 500/9600
+healthy: 1000/9600
+healthy: 1500/9600
+healthy: 2000/9600
+healthy: 2500/9600
+healthy: 3000/9600
+healthy: 3500/9600
+healthy: 4000/9600
+healthy: 4500/9600
+healthy: 5000/9600
+healthy: 5500/9600
+healthy: 6000/9600
+healthy: 6500/9600
+healthy: 7000/9600
+healthy: 7500/9600
+healthy: 8000/9600
+healthy: 8500/9600
+healthy: 9000/9600
+healthy: 9500/9600
+robustness: service_exception
+robustness: missing_output
+robustness: wrong_intermediate_type
+robustness: null_intermediate
+robustness: negative_semantic_result
+robustness: plausible_wrong_result
+robustness: terminal_output_type
+robustness: low_trust
+robustness: unconfirmed_effect
+robustness: cross_tenant
+robustness: missing_tenant
+robustness: missing_target_tenant
+robustness: transient_recovered
+robustness: transient_no_retry
+robustness: step_timeout
+robustness: late_effect_after_timeout
+{
+  "out": "/workspace/scratch/9c7d03db97ee/work/pact-runtime/experiments/pact_evaluation/results",
+  "trials": 23382,
+  "elapsed_seconds": 308.8484303110008
+}

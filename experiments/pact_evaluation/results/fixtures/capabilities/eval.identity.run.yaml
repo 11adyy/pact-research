@@ -1,0 +1,15 @@
+id: eval.identity.run
+version: 1.0.0
+description: Controlled systems evaluation operation
+inputs:
+  data:
+    type: object
+    required: true
+outputs:
+  data:
+    type: object
+    required: true
+metadata: {}
+properties:
+  deterministic: true
+  side_effects: false

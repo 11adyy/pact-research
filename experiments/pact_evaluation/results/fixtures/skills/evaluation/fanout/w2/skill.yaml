@@ -1,0 +1,44 @@
+id: evaluation.fanout2
+version: 1.0.0
+name: evaluation.fanout2
+description: Evaluation fixture
+inputs:
+  data:
+    type: object
+    required: true
+  target_tenant_id:
+    type: string
+outputs:
+  result:
+    type: object
+    required: true
+steps:
+- id: b0
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b0
+  config:
+    depends_on: []
+- id: b1
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b1
+  config:
+    depends_on: []
+- id: join
+  uses: eval.merge.run
+  input:
+    data: inputs.data
+    branches:
+    - vars.b0
+    - vars.b1
+  output:
+    data: outputs.result
+  config:
+    depends_on:
+    - b0
+    - b1

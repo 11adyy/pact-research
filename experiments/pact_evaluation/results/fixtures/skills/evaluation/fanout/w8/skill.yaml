@@ -1,0 +1,104 @@
+id: evaluation.fanout8
+version: 1.0.0
+name: evaluation.fanout8
+description: Evaluation fixture
+inputs:
+  data:
+    type: object
+    required: true
+  target_tenant_id:
+    type: string
+outputs:
+  result:
+    type: object
+    required: true
+steps:
+- id: b0
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b0
+  config:
+    depends_on: []
+- id: b1
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b1
+  config:
+    depends_on: []
+- id: b2
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b2
+  config:
+    depends_on: []
+- id: b3
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b3
+  config:
+    depends_on: []
+- id: b4
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b4
+  config:
+    depends_on: []
+- id: b5
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b5
+  config:
+    depends_on: []
+- id: b6
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b6
+  config:
+    depends_on: []
+- id: b7
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.b7
+  config:
+    depends_on: []
+- id: join
+  uses: eval.merge.run
+  input:
+    data: inputs.data
+    branches:
+    - vars.b0
+    - vars.b1
+    - vars.b2
+    - vars.b3
+    - vars.b4
+    - vars.b5
+    - vars.b6
+    - vars.b7
+  output:
+    data: outputs.result
+  config:
+    depends_on:
+    - b0
+    - b1
+    - b2
+    - b3
+    - b4
+    - b5
+    - b6
+    - b7

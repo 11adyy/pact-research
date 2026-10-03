@@ -1,0 +1,17 @@
+id: eval.integrity.run
+version: 1.0.0
+description: Controlled systems evaluation operation
+inputs:
+  data:
+    type: object
+    required: true
+outputs:
+  allowed:
+    type: boolean
+    required: true
+  reason:
+    type: string
+metadata: {}
+properties:
+  deterministic: true
+  side_effects: false

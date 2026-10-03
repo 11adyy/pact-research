@@ -1,0 +1,9 @@
+{
+  "source_files_verified": {
+    "runtime_sha256": 78,
+    "harness_sha256": 8
+  },
+  "trial_denominator_verified": 23382,
+  "healthy_keys_unique": true,
+  "healthy_correctness_flag_verified": true
+}

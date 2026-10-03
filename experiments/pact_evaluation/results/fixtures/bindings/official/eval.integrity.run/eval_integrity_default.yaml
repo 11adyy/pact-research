@@ -1,0 +1,13 @@
+id: eval_integrity_default
+capability: eval.integrity.run
+service: eval_service
+protocol: pythoncall
+operation: integrity
+request:
+  data: input.data
+response:
+  allowed: response.allowed
+  reason: response.reason
+metadata:
+  status: stable
+  conformance_profile: standard

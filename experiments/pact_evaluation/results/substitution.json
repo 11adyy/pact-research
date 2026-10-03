@@ -1,0 +1,729 @@
+{
+  "skill_files_changed": 0,
+  "reused_workflows": 4,
+  "shared_capabilities": 4,
+  "selection_override_entries": 1,
+  "runs": [
+    {
+      "arm": "pact",
+      "case_id": "sum-0000",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "sum-0010",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "sum-0020",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "sum-0030",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "sum-0040",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "sum-0050",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "sum-0060",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "sum-0070",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "sum-0080",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "sum-0090",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0000",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0010",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0020",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0030",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0040",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0050",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0060",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0070",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0080",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "max-0090",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0000",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0010",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0020",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0030",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0040",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0050",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0060",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0070",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0080",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "decision-0090",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0000",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0010",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0020",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0030",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0040",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0050",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0060",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0070",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0080",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact",
+      "case_id": "text-0090",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_zalternate",
+      "substitution_observed": true
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0000",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0010",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0020",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0030",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0040",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0050",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0060",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0070",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0080",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "sum-0090",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0000",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0010",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0020",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0030",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0040",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0050",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0060",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0070",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0080",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "max-0090",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0000",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0010",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0020",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0030",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0040",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0050",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0060",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0070",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0080",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "decision-0090",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0000",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0010",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0020",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0030",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0040",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0050",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0060",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0070",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0080",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    },
+    {
+      "arm": "pact_static_binding",
+      "case_id": "text-0090",
+      "correct_before": true,
+      "correct_after": true,
+      "selected_binding_before": "eval_solve_default",
+      "selected_binding": "eval_solve_default",
+      "substitution_observed": false
+    }
+  ],
+  "scope": "mechanical edit count and interface portability; not human developer productivity"
+}

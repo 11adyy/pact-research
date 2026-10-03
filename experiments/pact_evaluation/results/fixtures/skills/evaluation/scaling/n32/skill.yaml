@@ -1,0 +1,239 @@
+id: evaluation.chain32
+version: 1.0.0
+name: evaluation.chain32
+description: Evaluation fixture
+inputs:
+  data:
+    type: object
+    required: true
+  target_tenant_id:
+    type: string
+outputs:
+  result:
+    type: object
+    required: true
+steps:
+- id: s0
+  uses: eval.identity.run
+  input:
+    data: inputs.data
+  output:
+    data: vars.s0
+  config: {}
+- id: s1
+  uses: eval.identity.run
+  input:
+    data: vars.s0
+  output:
+    data: vars.s1
+  config: {}
+- id: s2
+  uses: eval.identity.run
+  input:
+    data: vars.s1
+  output:
+    data: vars.s2
+  config: {}
+- id: s3
+  uses: eval.identity.run
+  input:
+    data: vars.s2
+  output:
+    data: vars.s3
+  config: {}
+- id: s4
+  uses: eval.identity.run
+  input:
+    data: vars.s3
+  output:
+    data: vars.s4
+  config: {}
+- id: s5
+  uses: eval.identity.run
+  input:
+    data: vars.s4
+  output:
+    data: vars.s5
+  config: {}
+- id: s6
+  uses: eval.identity.run
+  input:
+    data: vars.s5
+  output:
+    data: vars.s6
+  config: {}
+- id: s7
+  uses: eval.identity.run
+  input:
+    data: vars.s6
+  output:
+    data: vars.s7
+  config: {}
+- id: s8
+  uses: eval.identity.run
+  input:
+    data: vars.s7
+  output:
+    data: vars.s8
+  config: {}
+- id: s9
+  uses: eval.identity.run
+  input:
+    data: vars.s8
+  output:
+    data: vars.s9
+  config: {}
+- id: s10
+  uses: eval.identity.run
+  input:
+    data: vars.s9
+  output:
+    data: vars.s10
+  config: {}
+- id: s11
+  uses: eval.identity.run
+  input:
+    data: vars.s10
+  output:
+    data: vars.s11
+  config: {}
+- id: s12
+  uses: eval.identity.run
+  input:
+    data: vars.s11
+  output:
+    data: vars.s12
+  config: {}
+- id: s13
+  uses: eval.identity.run
+  input:
+    data: vars.s12
+  output:
+    data: vars.s13
+  config: {}
+- id: s14
+  uses: eval.identity.run
+  input:
+    data: vars.s13
+  output:
+    data: vars.s14
+  config: {}
+- id: s15
+  uses: eval.identity.run
+  input:
+    data: vars.s14
+  output:
+    data: vars.s15
+  config: {}
+- id: s16
+  uses: eval.identity.run
+  input:
+    data: vars.s15
+  output:
+    data: vars.s16
+  config: {}
+- id: s17
+  uses: eval.identity.run
+  input:
+    data: vars.s16
+  output:
+    data: vars.s17
+  config: {}
+- id: s18
+  uses: eval.identity.run
+  input:
+    data: vars.s17
+  output:
+    data: vars.s18
+  config: {}
+- id: s19
+  uses: eval.identity.run
+  input:
+    data: vars.s18
+  output:
+    data: vars.s19
+  config: {}
+- id: s20
+  uses: eval.identity.run
+  input:
+    data: vars.s19
+  output:
+    data: vars.s20
+  config: {}
+- id: s21
+  uses: eval.identity.run
+  input:
+    data: vars.s20
+  output:
+    data: vars.s21
+  config: {}
+- id: s22
+  uses: eval.identity.run
+  input:
+    data: vars.s21
+  output:
+    data: vars.s22
+  config: {}
+- id: s23
+  uses: eval.identity.run
+  input:
+    data: vars.s22
+  output:
+    data: vars.s23
+  config: {}
+- id: s24
+  uses: eval.identity.run
+  input:
+    data: vars.s23
+  output:
+    data: vars.s24
+  config: {}
+- id: s25
+  uses: eval.identity.run
+  input:
+    data: vars.s24
+  output:
+    data: vars.s25
+  config: {}
+- id: s26
+  uses: eval.identity.run
+  input:
+    data: vars.s25
+  output:
+    data: vars.s26
+  config: {}
+- id: s27
+  uses: eval.identity.run
+  input:
+    data: vars.s26
+  output:
+    data: vars.s27
+  config: {}
+- id: s28
+  uses: eval.identity.run
+  input:
+    data: vars.s27
+  output:
+    data: vars.s28
+  config: {}
+- id: s29
+  uses: eval.identity.run
+  input:
+    data: vars.s28
+  output:
+    data: vars.s29
+  config: {}
+- id: s30
+  uses: eval.identity.run
+  input:
+    data: vars.s29
+  output:
+    data: vars.s30
+  config: {}
+- id: s31
+  uses: eval.identity.run
+  input:
+    data: vars.s30
+  output:
+    data: outputs.result
+  config: {}

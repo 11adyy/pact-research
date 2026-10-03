@@ -1,0 +1,1022 @@
+[
+  {
+    "case_id": "sum-0000",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 405,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 5.012786,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0001",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 220,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.454854,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0002",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 963,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.422876,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0003",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 124,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 5.397573,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0004",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 1168,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.433713,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0005",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 330,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.350761,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0006",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 527,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.346805,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0007",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 635,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.578837,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0008",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 515,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.573469,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0009",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.bad_dependency",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 817,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.433042,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' depends on unknown step 'absent'. [skill=evaluation.bad_dependency]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "bad_dependency",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0000",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 405,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 5.084472,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0001",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 220,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.520811,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0002",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 963,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.676521,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0003",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 124,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.478749,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0004",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 1168,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.484669,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0005",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 330,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.516815,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0006",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 527,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.715368,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0007",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 635,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.481142,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0008",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 515,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.536254,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0009",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.cycle",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 817,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 4.410699,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Circular dependency detected among steps: s0, s1, s2, s3 [skill=evaluation.cycle]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "cycle",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0000",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 405,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 1.760033,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0001",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 220,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 1.837538,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0002",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 963,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 1.688208,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0003",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 124,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 1.952807,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0004",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 1168,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 1.781635,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0005",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 330,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 3.280784,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0006",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 527,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 1.956673,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0007",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 635,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 1.699364,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0008",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 515,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 1.647217,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  },
+  {
+    "case_id": "sum-0009",
+    "task": "sum",
+    "arm": "pact",
+    "repetition": 0,
+    "skill": "evaluation.read_only",
+    "status": "failed",
+    "correct": false,
+    "expected": {
+      "value": 817,
+      "label": "sum"
+    },
+    "actual": null,
+    "latency_ms": 1.693545,
+    "calls": [],
+    "effects": [],
+    "trace": [],
+    "events": [
+      {
+        "type": "skill_start",
+        "step_id": null
+      }
+    ],
+    "failed_step": null,
+    "error": {
+      "type": "InvalidSkillSpecError",
+      "message": "Step 's0' writes to read-only namespace 'frame'. [skill=evaluation.read_only]"
+    },
+    "bindings": {},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "scenario": "read_only",
+    "expectation_met": true
+  }
+]

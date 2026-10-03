@@ -1,0 +1,8 @@
+defaults:
+  eval.normalize.run: eval_normalize_default
+  eval.solve.run: eval_solve_default
+  eval.verify.run: eval_verify_default
+  eval.commit.run: eval_commit_default
+  eval.identity.run: eval_identity_default
+  eval.integrity.run: eval_integrity_default
+  eval.merge.run: eval_merge_default

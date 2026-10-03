@@ -1,0 +1,12 @@
+id: eval_solve_default
+capability: eval.solve.run
+service: eval_service
+protocol: pythoncall
+operation: solve
+request:
+  data: input.data
+response:
+  data: response.data
+metadata:
+  status: stable
+  conformance_profile: standard
