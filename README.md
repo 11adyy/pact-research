@@ -1,5 +1,6 @@
 # PACT: procedures an agent can execute and inspect
 
+
 **Procedural Agent Composition and Traceability** gives recurring agent work an explicit representation. A model can still interpret a goal and perform individual operations, while the procedure records which operations cooperate, the information each consumes, and the constraints on their execution.
 
 This repository contains the reference runtime. Its design starts with the composition model and derives the execution machinery from it.
@@ -62,5 +63,4 @@ Use `PACT_RUNTIME_REGISTRY_ROOT` to select another local catalog. Configure `PAC
 The expanded architecture paper and editable sources are in [paper/](paper/).
 The [evaluation suite](experiments/pact_evaluation/README.md) includes 23,382
 recorded offline executions, baselines, fault/policy probes, ablations, graph
-scaling and raw evidence. Additional author-reported LLM aggregates are explicitly
-unverified and kept separate from the measured results.
+scaling and raw evidence.
