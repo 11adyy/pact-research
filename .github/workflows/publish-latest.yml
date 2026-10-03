@@ -1,0 +1,33 @@
+name: Publish latest PACT source
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Restore the prepared source and retain both histories
+        shell: bash
+        run: |
+          set -euo pipefail
+          git show origin/main:.github/workflows/publish-latest.yml > "$RUNNER_TEMP/publish-latest.yml"
+          python -m zipfile -e PACT_latest.zip "$RUNNER_TEMP/pact-import"
+          git fetch "$RUNNER_TEMP/pact-import/pact-runtime" main
+          prepared_commit=$(git rev-parse FETCH_HEAD)
+          test "$(git rev-parse "$prepared_commit^{tree}")" = 9ebbd23f4c8b77a1ab1231012f5319fc4f8b6524
+          git config user.name 'Noah Dylan Pelegrini'
+          git config user.email 'contact@11adyy.dev'
+          git checkout --detach "$prepared_commit"
+          git merge --allow-unrelated-histories --strategy=ours origin/main -m 'Publish latest PACT runtime, reproducible evaluation and expanded paper'
+          test "$(git rev-parse HEAD^{tree})" = 9ebbd23f4c8b77a1ab1231012f5319fc4f8b6524
+          cp "$RUNNER_TEMP/publish-latest.yml" .github/workflows/publish-latest.yml
+          git add .github/workflows/publish-latest.yml
+          git commit -m 'Retain temporary publication workflow until web cleanup'
+          git diff --exit-code origin/main HEAD -- .github/workflows
+          git push origin HEAD:main
+          echo 'Published 1,279 source files; source tree verified before temporary workflow retention.'
