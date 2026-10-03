@@ -1,0 +1,346 @@
+name: CI — Test · Lint · Type-check · Security
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+                                                        
+  REGISTRY_REF: ${{ vars.PACT_REGISTRY_REF || \'main\' }}
+
+jobs:
+  enforce-pr-association:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Enforce PR association on protected-branch pushes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python tooling/enforce_pr_association.py
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout pact-registry
+        env:
+          OWNER: ${{ github.repository_owner }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone "https://x-access-token:${TOKEN}@github.com/${OWNER}/pact-registry.git" ../pact-registry
+          git -C ../pact-registry checkout "${REGISTRY_REF}"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+          pip install ruff mypy hypothesis mutmut jsonschema
+
+      - name: Run unit tests with coverage
+        run: |
+          mkdir -p artifacts
+          python -m pytest --tb=short -q -o "addopts=--cov=runtime --cov=gateway --cov=customer_facing --cov=customization --cov-report=term-missing:skip-covered --cov-report=html:artifacts/htmlcov" 2>&1 | tee artifacts/pytest.log
+        env:
+          PYTHONPATH: .
+
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.python-version }}
+          path: artifacts/htmlcov/
+
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout pact-registry
+        env:
+          OWNER: ${{ github.repository_owner }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone "https://x-access-token:${TOKEN}@github.com/${OWNER}/pact-registry.git" ../pact-registry
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ruff
+        run: |
+          pip install ruff==0.15.7
+          pip install pyyaml
+
+      - name: Ruff check
+        run: ruff check --output-format=github .
+
+      - name: Ruff format check
+        run: ruff format --check .
+
+      - name: Verify registry capability references
+        run: |
+          python tooling/verify_registry_capability_references.py
+
+      - name: Verify doc/version drift
+        run: |
+          python tooling/verify_doc_version_drift.py
+
+  type-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[dev]"
+          pip install mypy types-PyYAML types-requests
+
+      - name: Run mypy
+        run: |
+          mypy runtime/ gateway/ customer_facing/ \
+            --ignore-missing-imports \
+            --no-error-summary \
+            --show-error-codes \
+            2>&1 | tee artifacts/mypy.log || true
+
+  security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[dev]"
+
+      - name: pip-audit
+        run: |
+          pip-audit --format=json --output=artifacts/pip_audit.json || true
+
+      - name: SBOM generation
+        run: |
+          python tooling/security_audit.py --sbom-only --output artifacts/sbom.json || true
+
+      - name: JSON schema validation
+        run: |
+          pip install jsonschema
+          python tooling/validate_json_schemas.py
+
+      - name: OpenAPI contract guardrails
+        run: |
+          python tooling/verify_openapi_error_contract.py
+
+      - name: Upload security artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-reports
+          path: |
+            artifacts/pip_audit.json
+            artifacts/sbom.json
+
+  container-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t pact-runtime:ci .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@v0.35.0
+        continue-on-error: true
+        with:
+          image-ref: "pact-runtime:ci"
+          format: "table"
+          exit-code: "1"
+          severity: "CRITICAL,HIGH"
+          output: "artifacts/trivy-report.txt"
+
+      - name: Run Trivy SBOM
+        uses: aquasecurity/trivy-action@v0.35.0
+        if: always()
+        continue-on-error: true
+        with:
+          image-ref: "pact-runtime:ci"
+          format: "cyclonedx"
+          output: "artifacts/trivy-sbom.json"
+
+      - name: Upload container security reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-security-reports
+          path: |
+            artifacts/trivy-report.txt
+            artifacts/trivy-sbom.json
+
+  binding-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout pact-registry
+        env:
+          OWNER: ${{ github.repository_owner }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone "https://x-access-token:${TOKEN}@github.com/${OWNER}/pact-registry.git" ../pact-registry
+          git -C ../pact-registry checkout "${REGISTRY_REF}"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -e ".[dev]"
+
+      - name: Run binding contract tests
+        run: |
+          python -m pytest test_binding_contracts.py test_atomic_properties.py -v --tb=short -o "addopts="
+
+      - name: Run protocol equivalence tests
+        run: |
+          python -m pytest test_protocol_equivalence.py -v --tb=short -o "addopts="
+
+  cognitive-quality-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout pact-registry
+        env:
+          OWNER: ${{ github.repository_owner }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone "https://x-access-token:${TOKEN}@github.com/${OWNER}/pact-registry.git" ../pact-registry
+          git -C ../pact-registry checkout "${REGISTRY_REF}"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run cognitive quality gates
+        run: |
+          python tooling/run_cognitive_quality_gates.py --report-file artifacts/cognitive_quality_gates_local_report.json
+
+      - name: Upload cognitive quality reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cognitive-quality-reports
+          path: |
+            artifacts/cognitive_e2e_contract_report.json
+            artifacts/cognitive_semantic_all_report.json
+            artifacts/cognitive_quality_gates_local_report.json
+
+  policy-bundle-governance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install governance verifier dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jsonschema
+
+      - name: Verify OPA policy bundle lifecycle governance
+        run: |
+          python tooling/verify_policy_bundle_lifecycle.py --bundle-root policies/opa --report-file artifacts/policy_bundle_lifecycle_report.json
+          python tooling/verify_policy_gate_freshness.py --report-file artifacts/policy_gate_freshness_report.json
+          python tooling/verify_branch_protection_policy.py --report-file artifacts/branch_protection_policy_report.json
+          python tooling/verify_required_status_checks_consistency.py --report-file artifacts/required_status_checks_consistency_report.json
+          python tooling/verify_github_branch_protection.py --report-file artifacts/github_branch_protection_report.json
+          python tooling/verify_workflow_embedded_python.py --report-file artifacts/workflow_embedded_python_report.json
+
+      - name: Generate governance executive summary
+        if: always()
+        run: |
+          python tooling/generate_governance_executive_summary.py \
+            --title "Governance Executive Summary (CI Policy Bundle Governance)" \
+            --input-report artifacts/policy_bundle_lifecycle_report.json \
+            --input-report artifacts/policy_gate_freshness_report.json \
+            --input-report artifacts/branch_protection_policy_report.json \
+            --input-report artifacts/required_status_checks_consistency_report.json \
+            --input-report artifacts/github_branch_protection_report.json \
+            --input-report artifacts/workflow_embedded_python_report.json \
+            --report-file artifacts/governance_executive_summary.json \
+            --markdown-file artifacts/governance_executive_summary.md
+
+      - name: Append governance executive summary
+        if: always()
+        run: |
+          if [ -f artifacts/governance_executive_summary.md ]; then
+            cat artifacts/governance_executive_summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload policy bundle governance report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: policy-bundle-governance-report
+          path: |
+            artifacts/policy_bundle_lifecycle_report.json
+            artifacts/policy_gate_freshness_report.json
+            artifacts/branch_protection_policy_report.json
+            artifacts/required_status_checks_consistency_report.json
+            artifacts/github_branch_protection_report.json
+            artifacts/workflow_embedded_python_report.json
+            artifacts/governance_executive_summary.json
+            artifacts/governance_executive_summary.md
